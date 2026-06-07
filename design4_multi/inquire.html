@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquire Now - Periyar Crest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">PERIYAR CREST</a>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="villas.html">Villa Details</a>
+            <a href="amenities.html">Specifications</a>
+            <a href="inquire.html" class="active">Inquire Now</a>
+        </nav>
+    </header>
+
+    <!-- Subpage Hero -->
+    <section class="subpage-hero" style="background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('../extracted_images/frame_10.jpg');">
+        <div class="container">
+            <h1>Inquire & Request Proposals</h1>
+            <p>Connect with our commercial representative or booking concierge.</p>
+        </div>
+    </section>
+
+    <!-- Contact section -->
+    <section class="inquiry-page-sec">
+        <div class="container">
+            <div class="inquiry-grid">
+                <!-- Form Box -->
+                <div class="rfp-form-card">
+                    <h2>Submit Inquiry</h2>
+                    <p class="desc">Please complete the form below. For commercial acquisitions or corporate rentals, our representative will contact you within one business day.</p>
+                    
+                    <form id="rfpForm" onsubmit="submitRFP(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Contact Name</label>
+                                <input type="text" id="name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company / Organization (Optional)</label>
+                                <input type="text" id="company" placeholder="E.g., Travel Co.">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Business Email</label>
+                                <input type="email" id="email" required placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" required placeholder="+91 98765 43210">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interest_type">Interest Profile</label>
+                            <select id="interest_type" required onchange="adjustFormFields()">
+                                <option value="" disabled selected>Please select profile</option>
+                                <option value="acquisition">Property Acquisition / Investment</option>
+                                <option value="homestay">Full Villa Homestay Booking</option>
+                                <option value="rooms">Individual Room Rental Booking</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="details">Requirements / Notes</label>
+                            <textarea id="details" rows="5" required placeholder="Please outline your proposed dates, room requirements, or commercial queries..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-copper btn-full">Submit Request</button>
+                    </form>
+                    <div id="rfpSuccess" class="rfp-success-alert">
+                        <h3>Request Received!</h3>
+                        <p>Your reference code is <strong>#PCR-2026-06</strong>. A commercial manager has been assigned to your inquiry and will contact you shortly.</p>
+                    </div>
+                </div>
+
+                <!-- Contact Info sidebar -->
+                <div class="rfp-info-sidebar">
+                    <div class="sidebar-block">
+                        <h3>Commercial Desk</h3>
+                        <p>Our sales and booking office coordinates all property bookings and acquisition discussions.</p>
+                        <ul class="sidebar-details">
+                            <li>📞 Hotline: +91 98765 43210</li>
+                            <li>✉️ Stays: stay@periyarcrest.com</li>
+                            <li>✉️ Investments: invest@periyarcrest.com</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-block">
+                        <h3>Secure Gated Location</h3>
+                        <p>Located on a private hilltop ridge in Idukki, Kerala, overlooking the Periyar River. Access is restricted to registered guests via the automated gate security system.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h3>Periyar Crest</h3>
+                <p>Hilltop boutique property offering luxury stays and real estate opportunities in Idukki, Kerala.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="villas.html">Villa Details</a></li>
+                    <li><a href="amenities.html">Specifications</a></li>
+                    <li><a href="inquire.html">Inquire Now</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Reservations Desk</h4>
+                <p>📍 Idukki, Kerala, India</p>
+                <p>📞 +91 98765 43210</p>
+                <p>✉️ invest@periyarcrest.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Periyar Crest Villas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Adjust fields or placeholders based on selection
+        function adjustFormFields() {
+            const select = document.getElementById('interest_type');
+            const textarea = document.getElementById('details');
+            if (select.value === 'acquisition') {
+                textarea.placeholder = "Please detail your acquisition interest, funding profile, or scheduling requests for on-site due diligence...";
+            } else if (select.value === 'homestay') {
+                textarea.placeholder = "Please outline requested dates, group size, meal catering options, and details of any events you plan to host...";
+            } else {
+                textarea.placeholder = "Please state the number of rooms required, booking dates, and guest profiles...";
+            }
+        }
+
+        // Form submission
+        function submitRFP(event) {
+            event.preventDefault();
+            document.getElementById('rfpForm').style.display = 'none';
+            document.getElementById('rfpSuccess').classList.add('active');
+        }
+
+        // Read query parameters to preset select
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const mode = urlParams.get('mode');
+            if (mode) {
+                const select = document.getElementById('interest_type');
+                if (mode === 'homestay') select.value = 'homestay';
+                if (mode === 'room') select.value = 'rooms';
+                if (mode === 'acquisition') select.value = 'acquisition';
+                adjustFormFields();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -262,22 +262,38 @@ body {
     margin: 1.5rem auto 0 auto;
 }
 
-/* Section 1: The Sanctuary */
+/* Section 1: The Sanctuary / Welcome */
 .sanctuary-sec {
     background-color: var(--bg-dark);
 }
 
 .sanctuary-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
     align-items: center;
 }
 
 .sanctuary-content .text-block {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
+}
+
+.sanctuary-content .sec-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--primary);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.welcome-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.2;
 }
 
 .sanctuary-content p {
@@ -287,31 +303,71 @@ body {
 }
 
 .sanctuary-content .lead {
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     color: #fff;
-    font-family: var(--font-serif);
-    line-height: 1.6;
-    border-left: 3px solid var(--primary);
-    padding-left: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
-.image-block {
+.read-more {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: var(--transition);
+}
+
+.read-more:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Welcome Gallery for Design 1 (Dark Theme version) */
+.welcome-gallery {
+    position: relative;
+    height: 450px;
+    width: 100%;
+}
+
+.welcome-gallery .img-box {
+    position: absolute;
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border: 6px solid var(--bg-sec);
+    background-color: var(--bg-dark);
+    transition: var(--transition);
 }
 
-.image-block img {
+.welcome-gallery .img-box:hover {
+    transform: translateY(-5px) scale(1.02);
+    z-index: 10 !important;
+    border-color: var(--primary);
+}
+
+.welcome-gallery .img-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: var(--transition);
 }
 
-.hover-zoom:hover {
-    transform: scale(1.04);
+.welcome-gallery .box-1 {
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 75%;
+    z-index: 1;
+}
+
+.welcome-gallery .box-2 {
+    bottom: 0;
+    right: 0;
+    width: 60%;
+    height: 60%;
+    z-index: 2;
 }
 
 /* Parallax Divider Sections (Pure CSS Scrolling Background Effect) */

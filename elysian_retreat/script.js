@@ -5,12 +5,50 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initPrivateGate();
     initHeader();
     initDatePickers();
     initFaqAccordion();
     initGalleryAndLightbox();
     initBookingForm();
 });
+
+/* --------------------------------------------------------------------------
+   0. Private Access Gate
+   -------------------------------------------------------------------------- */
+function initPrivateGate() {
+    const gateModal = document.getElementById('privateGateModal');
+    const gateForm = document.getElementById('gateForm');
+    const gatePin = document.getElementById('gatePin');
+    const gateError = document.getElementById('gateError');
+
+    if (!gateModal || !gateForm) return;
+
+    if (sessionStorage.getItem('er_authorized') === 'true') {
+        document.documentElement.classList.remove('gate-locked');
+        gateModal.remove();
+        return;
+    }
+
+    let attempts = 0;
+    gateForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const entered = (gatePin.value || '').trim().toLowerCase();
+        if (entered === '2026' || entered === 'joe') {
+            sessionStorage.setItem('er_authorized', 'true');
+            document.documentElement.classList.remove('gate-locked');
+            gateModal.remove();
+        } else {
+            attempts++;
+            if (gateError) gateError.style.display = 'block';
+            gatePin.value = '';
+            gatePin.focus();
+            if (attempts >= 3) {
+                window.location.replace('../design1_single_parallax/index.html');
+            }
+        }
+    });
+}
 
 /* --------------------------------------------------------------------------
    1. Sticky Header & Active Navigation Highlighting

@@ -54,7 +54,7 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--nav-height) + var(--banner-height) + 16px);
+    scroll-padding-top: calc(var(--nav-height) + 16px);
     background-color: var(--color-ivory);
     color: var(--color-text-main);
 }
@@ -304,7 +304,7 @@ button {
    -------------------------------------------------------------------------- */
 .site-header {
     position: sticky;
-    top: 38px;
+    top: 0;
     z-index: 1000;
     background-color: rgba(248, 246, 240, 0.94);
     backdrop-filter: blur(12px);

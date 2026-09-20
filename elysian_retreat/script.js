@@ -1,6 +1,6 @@
 /**
- * Elysian Heights - Version 2 (Launch-Ready Hospitality Edition)
- * Client-side script handling navigation, accessible lightbox,
+ * Elysian Heights - Hospitality Edition
+ * Frontend script handling navigation, accessible lightbox,
  * FAQ accordion, form validation, date calculation, and WhatsApp dispatch.
  */
 

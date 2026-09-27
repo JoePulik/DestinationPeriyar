@@ -92,4 +92,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // Ensure Hero Background Video Autoplays
+    const heroVid = document.querySelector('.hero-bg-video');
+    if (heroVid) {
+        heroVid.muted = true;
+        const playPromise = heroVid.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // Autoplay prevented by browser policy; fallback poster is active
+            });
+        }
+    }
 });

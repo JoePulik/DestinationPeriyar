@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elysian Heights - Luxury Hilltop Villa in Idukki, Kerala</title>
-    <meta name="description" content="Elysian Heights is a 4 BHK luxury hilltop villa in Idukki overlooking the Periyar River. 4 en-suite bedrooms, 3 lounges, 2 kitchens, cook on request.">
+    <meta name="description" content="Elysian Heights is an exquisite 4 BHK luxury hilltop villa overlooking the Periyar River in Idukki, Kerala.">
     <meta name="robots" content="noindex, nofollow">
 
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css">
+    <!-- Exact V1 Stylesheet with cache-busting -->
+    <link rel="stylesheet" href="styles.css?v=3.1">
 
-    <!-- Gate Styles & Early Auth Script -->
+    <!-- Private Access Lock Gate Styles & Script -->
     <style id="private-gate-styles">
         html.gate-locked body > *:not(#privateGateModal) {
             display: none !important;
@@ -39,13 +40,13 @@
         }
         .gate-card {
             background: #151411;
-            border: 1px solid rgba(205, 164, 94, 0.35);
+            border: 1px solid rgba(205, 164, 94, 0.4);
             border-radius: 8px;
             padding: 2.5rem 2rem;
             max-width: 400px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
         }
         .gate-tag {
             font-size: 0.72rem;
@@ -150,558 +151,421 @@
         </div>
     </div>
 
-    <!-- Navigation Header -->
-    <header class="site-header" id="header">
-        <div class="nav-container">
-            <a href="#hero" class="brand-logo" aria-label="Elysian Heights Home">
-                <span class="brand-title">ELYSIAN HEIGHTS</span>
-                <span class="brand-sub">IDUKKI &bull; KERALA</span>
-            </a>
-            
-            <nav class="main-nav" aria-label="Main Navigation">
-                <a href="#sanctuary" class="nav-link">The Sanctuary</a>
-                <a href="#amenities" class="nav-link">Specifications</a>
-                <a href="#tour" class="nav-link">Cinematic Tour</a>
-                <a href="#gallery" class="nav-link">Visuals</a>
-                <a href="#location" class="nav-link">Location</a>
-                <a href="#reviews" class="nav-link">Reviews</a>
-            </nav>
-
-            <div class="nav-actions">
-                <a href="https://wa.me/919876543210?text=Hello%2C%20I%20am%20interested%20in%20staying%20at%20Elysian%20Heights%20Idukki." target="_blank" rel="noopener noreferrer" class="nav-whatsapp" aria-label="Chat on WhatsApp">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.073-2.18-.544-1.9-0.787-3.125-2.737-3.22-2.863-.095-.126-.777-1.034-.777-1.971s.486-1.398.66-1.589c.174-.191.381-.239.508-.239s.254.005.365.011c.118.006.277-.045.433.329.16.386.548 1.336.595 1.433.048.096.08.208.016.335-.064.127-.096.207-.191.319-.096.111-.202.249-.288.335-.096.096-.197.2-.085.391.111.191.493.814 1.057 1.317.728.648 1.342.85 1.533.945.191.096.302.08.414-.048.111-.127.476-.556.603-.746.127-.191.254-.159.429-.095.175.064 1.111.524 1.302.619.191.096.318.143.365.223.048.08.048.461-.096.866zM12 2C6.477 2 2 6.477 2 12c0 1.892.524 3.662 1.435 5.176L2 22l4.957-1.399C8.384 21.493 10.133 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
-                    <span>WhatsApp</span>
-                </a>
-                <a href="#contact" class="btn-primary-nav">Check Availability</a>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section (V1 Luxury Parallax Dark Style) -->
-        <section class="hero-section" id="hero">
-            <div class="hero-bg-layer"></div>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <span class="scroll-tag">THE PINNACLE OF LUXURY &bull; IDUKKI, KERALA</span>
-                <h1 class="hero-title">ELYSIAN HEIGHTS</h1>
-                <p class="tagline">An exquisite 4 BHK hilltop villa overlooking the Periyar River, Idukki, Kerala</p>
-                <div class="hero-divider"></div>
-                <div class="hero-cta-group">
-                    <a href="#contact" class="btn btn-primary">Check Availability</a>
-                    <a href="#tour" class="btn btn-secondary">Watch the Film</a>
-                </div>
-
-                <!-- Proof Strip -->
-                <div class="hero-facts-bar">
-                    <div class="fact-col">
-                        <span class="fact-val">4</span>
-                        <span class="fact-txt">En-Suite Bedrooms</span>
-                    </div>
-                    <div class="fact-sep"></div>
-                    <div class="fact-col">
-                        <span class="fact-val">10–12</span>
-                        <span class="fact-txt">Guest Capacity</span>
-                    </div>
-                    <div class="fact-sep"></div>
-                    <div class="fact-col">
-                        <span class="fact-val">3</span>
-                        <span class="fact-txt">Living Lounges</span>
-                    </div>
-                    <div class="fact-sep"></div>
-                    <div class="fact-col">
-                        <span class="fact-val">2</span>
-                        <span class="fact-txt">Chef's Kitchens</span>
-                    </div>
-                    <div class="fact-sep"></div>
-                    <div class="fact-col">
-                        <span class="fact-val">Cook</span>
-                        <span class="fact-txt">On Prior Request</span>
+    <!-- Exact V1 3D Parallax Scrolling Container -->
+    <div class="parallax-container">
+        <!-- Hero Section with Parallax Layers -->
+        <header class="parallax-group hero-group">
+            <div class="parallax-layer bg-layer"></div>
+            <div class="parallax-layer overlay-layer"></div>
+            <div class="parallax-layer fg-layer">
+                <div class="hero-content">
+                    <span class="scroll-tag">THE PINNACLE OF LUXURY</span>
+                    <h1>ELYSIAN HEIGHTS</h1>
+                    <p class="tagline">An exquisite 4 BHK hilltop villa overlooking the Periyar River, Idukki, Kerala</p>
+                    <div class="divider"></div>
+                    <p class="location">🏔️ IDUKKI, KERALA &bull; BOUTIQUE RETREAT</p>
+                    <div class="action-buttons">
+                        <a href="#sanctuary" class="btn btn-primary">Discover the Sanctuary</a>
+                        <a href="#contact" class="btn btn-secondary">Inquire Now</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- Section 1: The Sanctuary -->
-        <section id="sanctuary" class="section sanctuary-sec">
-            <div class="container">
-                <div class="sanctuary-content">
-                    <div class="text-block">
-                        <span class="sec-subtitle">WELCOME TO PARADISE</span>
-                        <h2 class="welcome-title">A Luxurious Gated Estate in Idukki, Kerala</h2>
-                        <div class="gold-line left"></div>
-                        <p class="lead">Perched high on a hilltop where the fresh mountain air meets lush tropical greenery, Elysian Heights offers an enchanting escape into the heart of Kerala.</p>
-                        <p>Designed with a harmonious blend of modern aesthetics and natural grandeur, this 4 BHK villa overlooks a stunning vista of the Periyar River. Enjoy absolute peace of mind inside a fully secure property equipped with an automated gate and discreet CCTV. With two on-site caretakers and a professional cook available on request, your stay is guaranteed to be effortless and unforgettable.</p>
-                        <a href="#amenities" class="read-more">Explore the Specifications &rarr;</a>
-                    </div>
-                    <div class="welcome-gallery">
-                        <div class="img-box box-1">
-                            <img src="../extracted_images/frame_10.jpg" alt="Valley View at Night" loading="lazy">
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Section 1: The Sanctuary -->
+            <section id="sanctuary" class="section sanctuary-sec">
+                <div class="container">
+                    <div class="sanctuary-content">
+                        <div class="text-block">
+                            <span class="sec-subtitle">WELCOME TO PARADISE</span>
+                            <h2 class="welcome-title">A Luxurious Gated Estate in Idukki, Kerala</h2>
+                            <p class="lead">Perched high on a hilltop where the fresh mountain air meets lush tropical greenery, Elysian Heights offers an enchanting escape into the heart of Kerala.</p>
+                            <p>Designed with a harmonious blend of modern aesthetics and natural grandeur, this 4 BHK villa overlooks a stunning vista of the Periyar River. Enjoy absolute peace of mind inside a fully secure property equipped with an automated gate and CCTV cameras. With two on-site caretakers and a professional cook available on request, your stay is guaranteed to be effortless and unforgettable.</p>
+                            <a href="#amenities" class="read-more">Explore the Specifications &rarr;</a>
                         </div>
-                        <div class="img-box box-2">
-                            <img src="../extracted_images/frame_04.jpg" alt="Villa Hilltop Exterior" loading="lazy">
+                        <div class="welcome-gallery">
+                            <div class="img-box box-1">
+                                <img src="../extracted_images/frame_10.jpg" alt="Valley View">
+                            </div>
+                            <div class="img-box box-2">
+                                <img src="../extracted_images/frame_04.jpg" alt="Villa Exterior">
+                            </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Divider Parallax Image -->
+            <div class="parallax-divider bg-divider1">
+                <div class="overlay"></div>
+                <div class="divider-text">
+                    <p class="quote">"Where the clouds kiss the earth and the mist dances over the winding Periyar River."</p>
                 </div>
             </div>
-        </section>
 
-        <!-- Parallax Divider 1 -->
-        <div class="parallax-divider bg-divider1">
-            <div class="divider-overlay"></div>
-            <div class="divider-text">
-                <p class="quote">"Where the clouds kiss the earth and the mist dances over the winding Periyar River."</p>
-            </div>
-        </div>
+            <!-- Section 2: Spaces & Amenities (Compact 3-Pillar Design) -->
+            <section id="amenities" class="section amenities-sec">
+                <div class="container">
+                    <div class="sec-header">
+                        <h2>Estate Specifications</h2>
+                        <span class="sec-subtitle">CURATED LUXURY &bull; COMPLETE SPECIFICATIONS</span>
+                        <div class="gold-line"></div>
+                    </div>
 
-        <!-- Section 2: Estate Specifications (Compact 3-Pillar Design) -->
-        <section id="amenities" class="section amenities-sec">
-            <div class="container">
-                <div class="sec-header">
-                    <h2>Estate Specifications</h2>
-                    <span class="sec-subtitle">CURATED LUXURY &bull; COMPLETE SPECIFICATIONS</span>
-                    <div class="gold-line"></div>
-                </div>
-
-                <!-- Compact 3-Pillar Grid -->
-                <div class="specs-compact-grid">
-                    <!-- Pillar 1: Suites & Living -->
-                    <div class="spec-pillar-card">
-                        <div class="pillar-header">
-                            <div class="pillar-icon">
-                                <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M3 7v11M21 7v11M3 14h18M3 18h18M10 7v7M3 7h18"/></svg>
+                    <!-- Highlight Proof Bar -->
+                    <div class="specs-highlight-bar">
+                        <div class="spec-highlight-item"><span class="highlight-num">4</span> En-Suite Bedrooms</div>
+                        <div class="highlight-sep">•</div>
+                        <div class="spec-highlight-item"><span class="highlight-num">10–12</span> Guests</div>
+                        <div class="highlight-sep">•</div>
+                        <div class="spec-highlight-item"><span class="highlight-num">3</span> Lounges</div>
+                        <div class="highlight-sep">•</div>
+                        <div class="spec-highlight-item"><span class="highlight-num">2</span> Kitchens</div>
+                        <div class="highlight-sep">•</div>
+                        <div class="spec-highlight-item"><span class="highlight-num">7</span> Parking Bays</div>
+                        <div class="highlight-sep">•</div>
+                        <div class="spec-highlight-item"><span class="highlight-gold">Cook</span> On Request</div>
+                    </div>
+                    
+                    <!-- 3-Pillar Compact Specifications Matrix -->
+                    <div class="specs-compact-grid">
+                        <!-- Pillar 1: Suites & Social Living -->
+                        <div class="spec-pillar-card">
+                            <div class="pillar-header">
+                                <div class="pillar-icon">
+                                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v11M21 7v11M3 14h18M3 18h18M10 7v7M3 7h18"/></svg>
+                                </div>
+                                <div>
+                                    <h3>Suites &amp; Living</h3>
+                                    <span class="pillar-sub">Rest, social &amp; connectivity</span>
+                                </div>
                             </div>
-                            <div>
-                                <h3>Suites &amp; Living</h3>
-                                <span class="pillar-sub">Rest, work &amp; gather</span>
+                            <div class="pillar-items">
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>4 Luxury Bedrooms</strong>
+                                        <p>En-suite with modern attached bathrooms &amp; mountain-view balconies</p>
+                                    </div>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>3 Drawing Rooms</strong>
+                                        <p>Spacious, sunlit social lounges furnished with large custom plush sofas</p>
+                                    </div>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>Office &amp; Connectivity</strong>
+                                        <p>Quiet office workstation paired with high-speed Wi-Fi &amp; power backup</p>
+                                    </div>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>Entertainment Hub</strong>
+                                        <p>High-definition television with an integrated premium audio system</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="pillar-items">
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>4 Luxury En-Suite Bedrooms</strong>
-                                    <p>All attached bathrooms, hot water &amp; mountain-view balconies</p>
+
+                        <!-- Pillar 2: Dining & Hospitality -->
+                        <div class="spec-pillar-card">
+                            <div class="pillar-header">
+                                <div class="pillar-icon">
+                                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 2v3M10 2v3M14 2v3"/></svg>
+                                </div>
+                                <div>
+                                    <h3>Dining &amp; Hospitality</h3>
+                                    <span class="pillar-sub">Culinary &amp; dedicated service</span>
                                 </div>
                             </div>
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>3 Drawing Rooms</strong>
-                                    <p>Sunlit social lounges furnished with large custom plush sofas</p>
+                            <div class="pillar-items">
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>2 Chef's Kitchens</strong>
+                                        <p>Fully equipped kitchen spaces with high-end appliances, utilities &amp; gas</p>
+                                    </div>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>Open Sunset Bar</strong>
+                                        <p>Panoramic open-air counter overlooking misty river valleys at dusk</p>
+                                    </div>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>Dining &amp; Common Bath</strong>
+                                        <p>Spacious formal dining room for group meals plus common guest bath</p>
+                                    </div>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>Caretakers &amp; Cook</strong>
+                                        <p>Two on-site resident caretakers; private Kerala cook on prior request</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>Office &amp; High-Speed Wi-Fi</strong>
-                                    <p>Dedicated workstation with estate-wide backup connectivity</p>
+                        </div>
+
+                        <!-- Pillar 3: Grounds & Estate Security -->
+                        <div class="spec-pillar-card">
+                            <div class="pillar-header">
+                                <div class="pillar-icon">
+                                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </div>
+                                <div>
+                                    <h3>Grounds &amp; Security</h3>
+                                    <span class="pillar-sub">Privacy, views &amp; parking</span>
                                 </div>
                             </div>
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>Entertainment Hub</strong>
-                                    <p>Smart HDTV and integrated high-fidelity sound system</p>
+                            <div class="pillar-items">
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>Landscaped Gardens</strong>
+                                        <p>Lush green hilltop gardens with manicured lawns and stone walkways</p>
+                                    </div>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>Sitout &amp; Valley View</strong>
+                                        <p>Carefully situated patio overlooking the winding Periyar river below</p>
+                                    </div>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>High-Security Estate</strong>
+                                        <p>Automated entry gate system supported by discreet CCTV cameras</p>
+                                    </div>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-bullet">✦</span>
+                                    <div class="spec-text">
+                                        <strong>7 Car Parking Spaces</strong>
+                                        <p>Ample secure on-site parking inside the gated grounds for guest vehicles</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Pillar 2: Dining & Hospitality -->
-                    <div class="spec-pillar-card">
-                        <div class="pillar-header">
-                            <div class="pillar-icon">
-                                <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 2v3M10 2v3M14 2v3"/></svg>
-                            </div>
-                            <div>
-                                <h3>Dining &amp; Hospitality</h3>
-                                <span class="pillar-sub">Culinary &amp; attentive care</span>
-                            </div>
-                        </div>
-                        <div class="pillar-items">
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>2 Chef's Kitchens</strong>
-                                    <p>Fully equipped with stoves, refrigerators, cookware &amp; gas supplies</p>
-                                </div>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>Open Sunset Bar</strong>
-                                    <p>Panoramic open-air counter overlooking misty river valleys</p>
-                                </div>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>Dining &amp; Common Bath</strong>
-                                    <p>Spacious group dining room plus dedicated guest washroom</p>
-                                </div>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>Caretakers &amp; Cook</strong>
-                                    <p>Two on-site resident caretakers; private Kerala cook on prior request</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pillar 3: Grounds & Security -->
-                    <div class="spec-pillar-card">
-                        <div class="pillar-header">
-                            <div class="pillar-icon">
-                                <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            </div>
-                            <div>
-                                <h3>Grounds &amp; Security</h3>
-                                <span class="pillar-sub">Private estate seclusion</span>
-                            </div>
-                        </div>
-                        <div class="pillar-items">
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>Landscaped Hillside Gardens</strong>
-                                    <p>Manicured lawns, stone pathways, and tropical foliage</p>
-                                </div>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>Scenic Viewing Sitout</strong>
-                                    <p>Paved patio facing the winding Periyar river channel below</p>
-                                </div>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>Automated Gate &amp; CCTV</strong>
-                                    <p>Secure gated perimeter with discreet exterior access monitoring</p>
-                                </div>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-bullet">✦</span>
-                                <div class="spec-text">
-                                    <strong>7-Car Private Parking</strong>
-                                    <p>Ample secure on-site parking for large family vehicles</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Parallax Divider 2 -->
-        <div class="parallax-divider bg-divider2">
-            <div class="divider-overlay"></div>
-            <div class="divider-text">
-                <p class="quote">"An architectural marvel basking in the warm golden glow of the Idukki night."</p>
-            </div>
-        </div>
-
-        <!-- Section: Cinematic Tour -->
-        <section id="tour" class="section tour-sec">
-            <div class="container">
-                <div class="sec-header">
-                    <h2>Cinematic Tour</h2>
-                    <span class="sec-subtitle">EXPERIENCE THE RETREAT IN MOTION</span>
-                    <div class="gold-line"></div>
-                </div>
-                <div class="video-container">
-                    <video controls poster="../extracted_images/frame_04.jpg" class="tour-video" playsinline>
-                        <source src="../Destination periyar.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+            <!-- Divider Parallax Image 2 -->
+            <div class="parallax-divider bg-divider2">
+                <div class="overlay"></div>
+                <div class="divider-text">
+                    <p class="quote">"An architectural marvel basking in the warm golden glow of the Idukki night."</p>
                 </div>
             </div>
-        </section>
 
-        <!-- Section 3: Gallery -->
-        <section id="gallery" class="section gallery-sec">
-            <div class="container">
-                <div class="sec-header">
-                    <h2>The Visual Narrative</h2>
-                    <span class="sec-subtitle">A GLIMPSE OF ELYSIAN HEIGHTS</span>
-                    <div class="gold-line"></div>
-                </div>
-
-                <!-- Gallery Category Filters -->
-                <div class="gallery-filters">
-                    <button type="button" class="filter-btn active" data-filter="all">All Perspectives</button>
-                    <button type="button" class="filter-btn" data-filter="valley">The Valley</button>
-                    <button type="button" class="filter-btn" data-filter="villa">The Villa</button>
-                    <button type="button" class="filter-btn" data-filter="evening">Evening Glow</button>
-                </div>
-
-                <div class="gallery-grid" id="galleryGrid">
-                    <div class="gallery-item large" data-category="valley" data-index="0">
-                        <img src="../extracted_images/frame_01.jpg" alt="Lush River Valley" loading="lazy">
-                        <div class="overlay-text">Lush River Valley</div>
+            <!-- Video Tour Section -->
+            <section id="tour" class="section tour-sec" style="background-color: var(--bg-sec); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+                <div class="container">
+                    <div class="sec-header">
+                        <h2>Cinematic Tour</h2>
+                        <span class="sec-subtitle">EXPERIENCE THE RETREAT IN MOTION</span>
+                        <div class="gold-line"></div>
                     </div>
-                    <div class="gallery-item" data-category="villa" data-index="1">
-                        <img src="../extracted_images/frame_04.jpg" alt="Hilltop Estate Aerial" loading="lazy">
-                        <div class="overlay-text">Hilltop Estate</div>
-                    </div>
-                    <div class="gallery-item" data-category="valley" data-index="2">
-                        <img src="../extracted_images/frame_05.jpg" alt="Riverfront Elevation" loading="lazy">
-                        <div class="overlay-text">Riverfront Elevation</div>
-                    </div>
-                    <div class="gallery-item" data-category="villa" data-index="3">
-                        <img src="../extracted_images/frame_06.jpg" alt="Modern Architecture Facade" loading="lazy">
-                        <div class="overlay-text">Modern Architecture</div>
-                    </div>
-                    <div class="gallery-item" data-category="evening" data-index="4">
-                        <img src="../extracted_images/frame_08.jpg" alt="Nocturnal Serenade" loading="lazy">
-                        <div class="overlay-text">Nocturnal Serenade</div>
-                    </div>
-                    <div class="gallery-item large" data-category="evening" data-index="5">
-                        <img src="../extracted_images/frame_10.jpg" alt="Warm Night Illumination" loading="lazy">
-                        <div class="overlay-text">Warm Night Illumination</div>
+                    <div class="video-container">
+                        <video controls poster="../extracted_images/frame_04.jpg" class="tour-video" playsinline>
+                            <source src="../Destination periyar.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Location & Verified Travel Times -->
-        <section id="location" class="section location-sec">
-            <div class="container">
-                <div class="sec-header">
-                    <h2>Regional Connectivity</h2>
-                    <span class="sec-subtitle">EXPLORE THE HIGHLANDS OF IDUKKI</span>
-                    <div class="gold-line"></div>
-                </div>
-
-                <div class="location-grid">
-                    <div class="travel-table-wrap">
-                        <table class="travel-table">
-                            <thead>
-                                <tr>
-                                    <th>Key Destination / Hub</th>
-                                    <th>Approx. Driving Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Idukki Arch Dam &amp; Viewpoint</strong></td>
-                                    <td>~45 minutes scenic mountain drive</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Thekkady &amp; Periyar Tiger Reserve</strong></td>
-                                    <td>~1.5 hours through spice plantations</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Munnar Tea Gardens</strong></td>
-                                    <td>~1.5 hours panoramic hill road</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Aluva Railway Station (AWY)</strong></td>
-                                    <td>~2.5 hours connected transit</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Cochin International Airport (COK)</strong></td>
-                                    <td>~3.0 hours direct highway route</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <!-- Section 3: Gallery -->
+            <section id="gallery" class="section gallery-sec">
+                <div class="container">
+                    <div class="sec-header">
+                        <h2>The Visual Narrative</h2>
+                        <span class="sec-subtitle">A GLIMPSE OF ELYSIAN HEIGHTS</span>
+                        <div class="gold-line"></div>
                     </div>
-
-                    <div class="map-card">
-                        <span class="map-pin">📍</span>
-                        <h3>Idukki Highlands, Kerala</h3>
-                        <p>Perched high above the serene Periyar River Basin</p>
-                        <div class="map-pills">
-                            <span class="m-pill">Exclusive Gated Estate</span>
-                            <span class="m-pill">Mountain Panorama</span>
+                    <div class="gallery-grid">
+                        <div class="gallery-item large" onclick="openLightbox(0)">
+                            <img src="../extracted_images/frame_01.jpg" alt="Destination Periyar Welcome Title View">
+                            <div class="overlay-text">Lush River Valley</div>
                         </div>
-                        <a href="https://maps.google.com/?q=Idukki+Kerala" target="_blank" rel="noopener noreferrer" class="btn btn-secondary map-btn">Open in Google Maps &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Guest Reviews -->
-        <section id="reviews" class="section reviews-sec">
-            <div class="container">
-                <div class="sec-header">
-                    <h2>Guest Impressions</h2>
-                    <span class="sec-subtitle">WORDS OF PRAISE &amp; REFLECTIONS</span>
-                    <div class="gold-line"></div>
-                </div>
-
-                <!-- Rating Bar -->
-                <div class="reviews-rating-bar">
-                    <div class="rating-stars">★★★★★</div>
-                    <div class="rating-text">
-                        <strong>4.95 out of 5.0</strong> &bull; Based on verified stays in Idukki, Kerala
-                    </div>
-                </div>
-
-                <!-- Reviews Grid -->
-                <div class="reviews-grid">
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="review-stars">★★★★★</div>
-                            <span class="review-badge">Verified Stay</span>
+                        <div class="gallery-item" onclick="openLightbox(1)">
+                            <img src="../extracted_images/frame_04.jpg" alt="Villa Aerial Drone View">
+                            <div class="overlay-text">Hilltop Estate</div>
                         </div>
-                        <p class="review-quote">"Waking up to the morning mist rolling over the Periyar River from the private sitout was pure magic. The caretakers took exceptional care of every detail, and the cook prepared authentic Kerala meals that were out of this world."</p>
-                        <div class="reviewer-footer">
-                            <div class="reviewer-avatar">AM</div>
-                            <div class="reviewer-meta">
-                                <h4>Arun &amp; Priya Menon</h4>
-                                <span>Bangalore &bull; Family Holiday</span>
+                        <div class="gallery-item" onclick="openLightbox(2)">
+                            <img src="../extracted_images/frame_05.jpg" alt="Villa Next to River">
+                            <div class="overlay-text">Riverfront Elevation</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(3)">
+                            <img src="../extracted_images/frame_06.jpg" alt="Villa Front Facade">
+                            <div class="overlay-text">Modern Architecture</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(4)">
+                            <img src="../extracted_images/frame_08.jpg" alt="Villa Night Drone View">
+                            <div class="overlay-text">Nocturnal Serenade</div>
+                        </div>
+                        <div class="gallery-item large" onclick="openLightbox(5)">
+                            <img src="../extracted_images/frame_10.jpg" alt="Villa Facade at Night">
+                            <div class="overlay-text">Warm Night Illumination</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Guest Reviews -->
+            <section id="reviews" class="section reviews-sec">
+                <div class="container">
+                    <div class="sec-header">
+                        <h2>Guest Impressions</h2>
+                        <span class="sec-subtitle">WORDS OF PRAISE &amp; REFLECTIONS</span>
+                        <div class="gold-line"></div>
+                    </div>
+
+                    <!-- Rating Overview Badge -->
+                    <div class="reviews-rating-bar">
+                        <div class="rating-stars">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <div class="rating-text">
+                            <strong>4.95 out of 5.0</strong> &bull; Based on verified stays in Idukki, Kerala
+                        </div>
+                    </div>
+
+                    <!-- Reviews Grid -->
+                    <div class="reviews-grid">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="review-stars">★★★★★</div>
+                                <span class="review-badge">Verified Stay</span>
+                            </div>
+                            <p class="review-quote">"Waking up to the morning mist rolling over the Periyar River from the private sitout was pure magic. The caretakers took exceptional care of every detail, and the cook prepared authentic Kerala meals that were out of this world."</p>
+                            <div class="reviewer-footer">
+                                <div class="reviewer-avatar">AM</div>
+                                <div class="reviewer-meta">
+                                    <h4>Arun &amp; Priya Menon</h4>
+                                    <span>Bangalore &bull; Family Holiday</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="review-card featured">
-                        <div class="review-header">
-                            <div class="review-stars">★★★★★</div>
-                            <span class="review-badge">Verified Stay</span>
-                        </div>
-                        <p class="review-quote">"The villa's architectural beauty illuminated at night is unforgettable. We spent hours at the rooftop open bar soaking in the tranquility and mountain breeze. High security, fast Wi-Fi, and complete luxury in nature."</p>
-                        <div class="reviewer-footer">
-                            <div class="reviewer-avatar">DJ</div>
-                            <div class="reviewer-meta">
-                                <h4>David &amp; Sarah Jenkins</h4>
-                                <span>London, UK &bull; Boutique Homestay</span>
+                        <div class="review-card featured">
+                            <div class="review-header">
+                                <div class="review-stars">★★★★★</div>
+                                <span class="review-badge">Verified Stay</span>
+                            </div>
+                            <p class="review-quote">"The villa's architectural beauty illuminated at night is unforgettable. We spent hours at the rooftop open bar soaking in the tranquility and mountain breeze. High security, fast Wi-Fi, and complete luxury in nature."</p>
+                            <div class="reviewer-footer">
+                                <div class="reviewer-avatar">DJ</div>
+                                <div class="reviewer-meta">
+                                    <h4>David &amp; Sarah Jenkins</h4>
+                                    <span>London, UK &bull; Boutique Homestay</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="review-stars">★★★★★</div>
-                            <span class="review-badge">Verified Stay</span>
-                        </div>
-                        <p class="review-quote">"Spacious bedrooms with immaculate attached bathrooms and sprawling balconies. The automated gate and peaceful seclusion gave our group total privacy. Hands down the best hilltop property in Idukki."</p>
-                        <div class="reviewer-footer">
-                            <div class="reviewer-avatar">RK</div>
-                            <div class="reviewer-meta">
-                                <h4>Dr. Rajesh Kumar</h4>
-                                <span>Kochi &bull; Corporate Retreat</span>
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="review-stars">★★★★★</div>
+                                <span class="review-badge">Verified Stay</span>
+                            </div>
+                            <p class="review-quote">"Spacious bedrooms with immaculate attached bathrooms and sprawling balconies. The automated gate and peaceful seclusion gave our group total privacy. Hands down the best hilltop property in Idukki."</p>
+                            <div class="reviewer-footer">
+                                <div class="reviewer-avatar">RK</div>
+                                <div class="reviewer-meta">
+                                    <h4>Dr. Rajesh Kumar</h4>
+                                    <span>Kochi &bull; Corporate Retreat</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Section 4: Contact / Reservations -->
-        <section id="contact" class="section contact-sec">
-            <div class="container">
-                <div class="contact-box">
-                    <div class="contact-info">
-                        <h3>Plan Your Stay</h3>
-                        <p class="info-text">
-                            Reserve the private four-bedroom estate exclusively for your family or group. Enter your travel dates below to check availability or initiate direct dispatch on WhatsApp.
-                        </p>
-                        <ul class="contact-details">
-                            <li>📍 Idukki Highlands, Kerala, India</li>
-                            <li>📞 +91 98765 43210</li>
-                            <li>✉️ stay@elysianheights.com</li>
-                            <li>🕒 Concierge Hours: 8:00 AM – 9:00 PM IST</li>
-                        </ul>
-                    </div>
-
-                    <div class="contact-form-container">
-                        <form id="bookingForm" class="booking-form" novalidate>
-                            <div class="form-row">
+            <!-- Section 4: Contact / Booking -->
+            <section id="contact" class="section contact-sec">
+                <div class="container">
+                    <div class="contact-box">
+                        <div class="contact-info">
+                            <h3>Plan Your Stay</h3>
+                            <p class="info-text">Reserve the private four-bedroom estate exclusively for your family or group. Enter your travel dates below to check availability or initiate direct dispatch on WhatsApp.</p>
+                            <ul class="contact-details">
+                                <li>📍 Idukki Highlands, Kerala, India</li>
+                                <li>📞 +91 98765 43210</li>
+                                <li>✉️ stay@elysianheights.com</li>
+                            </ul>
+                        </div>
+                        <div class="contact-form-container">
+                            <form id="bookingForm" onsubmit="handleFormSubmit(event)">
                                 <div class="form-group">
-                                    <label for="name">Your Name *</label>
+                                    <label for="name">Your Name</label>
                                     <input type="text" id="name" required placeholder="John Doe">
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">WhatsApp / Phone *</label>
+                                    <label for="phone">WhatsApp / Phone Number</label>
                                     <input type="tel" id="phone" required placeholder="+91 98765 43210">
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" required placeholder="john@example.com">
-                            </div>
-
-                            <div class="form-row">
                                 <div class="form-group">
-                                    <label for="checkin">Check-in Date *</label>
-                                    <input type="date" id="checkin" required>
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" required placeholder="john@example.com">
                                 </div>
                                 <div class="form-group">
-                                    <label for="checkout">Check-out Date *</label>
-                                    <input type="date" id="checkout" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="guests">Guests *</label>
-                                    <select id="guests">
-                                        <option value="4 Guests">4 Guests</option>
-                                        <option value="6 Guests">6 Guests</option>
-                                        <option value="8 Guests" selected>8 Guests</option>
-                                        <option value="10 Guests">10 Guests</option>
-                                        <option value="12 Guests">12 Guests (Max)</option>
+                                    <label for="type">Inquiry Type</label>
+                                    <select id="type" required>
+                                        <option value="Entire Villa (4 Bedrooms)" selected>Exclusive Villa (4 En-Suite Bedrooms)</option>
+                                        <option value="Extended Family Stay">Extended Family Stay (10–12 Guests)</option>
+                                        <option value="Long Term Retreat">Private Executive Retreat</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="mealPlan">Meal Preference</label>
-                                    <select id="mealPlan">
-                                        <option value="Cook Requested" selected>Dedicated Cook (Kerala Cuisine)</option>
-                                        <option value="Self Catering">Self-Catering (2 Kitchens)</option>
-                                        <option value="Mixed Plan">Combination of Both</option>
-                                    </select>
+                                    <label for="message">Message / Requirements</label>
+                                    <textarea id="message" rows="3" placeholder="Tell us about your dates or requirements..."></textarea>
                                 </div>
+                                <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;">
+                                    <button type="submit" class="btn btn-primary" style="flex:1;">Send Inquiry</button>
+                                    <button type="button" class="btn btn-secondary" id="btnWhatsAppDirect" style="flex:1;border-color:#25d366;color:#25d366;" onclick="dispatchWhatsApp()">Chat on WhatsApp &rarr;</button>
+                                </div>
+                            </form>
+                            <div id="formSuccess" class="form-success-alert">
+                                <h4>Thank you!</h4>
+                                <p>Your inquiry has been received. Our concierge will contact you within 24 hours.</p>
                             </div>
-
-                            <div class="form-group">
-                                <label for="message">Requirements or Special Occasion</label>
-                                <textarea id="message" rows="3" placeholder="Tell us about your trip plans..."></textarea>
-                            </div>
-
-                            <div class="form-btn-group">
-                                <button type="submit" class="btn btn-primary" id="btnSubmit">Request Availability</button>
-                                <button type="button" class="btn btn-whatsapp" id="btnWhatsApp">Send via WhatsApp &rarr;</button>
-                            </div>
-                        </form>
-
-                        <div id="formSuccess" class="form-success-alert" hidden>
-                            <h4>Enquiry Prepared</h4>
-                            <p class="ref-code">Reference: <strong id="successRef">#EH-2026-4891</strong></p>
-                            <div class="success-breakdown" id="successDetails"></div>
-                            <a href="#" id="waSuccessBtn" class="btn btn-whatsapp btn-block" target="_blank" rel="noopener noreferrer">
-                                Connect on WhatsApp with this Enquiry &rarr;
-                            </a>
-                            <button type="button" class="btn-reset" id="btnReset">Submit Another Enquiry</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>&copy; 2026 Elysian Heights, Idukki. All rights reserved.</p>
-            <p>Designed for premium luxury accommodation.</p>
-        </footer>
-    </main>
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" hidden>
-        <span class="close-btn" id="lightboxClose" aria-label="Close preview">&times;</span>
-        <button type="button" class="lightbox-nav-btn prev" id="lightboxPrev" aria-label="Previous">&#10094;</button>
-        <div class="lightbox-inner">
-            <img id="lightbox-img" class="lightbox-content" src="" alt="Enlarged View">
-            <div id="lightbox-caption" class="lightbox-caption"></div>
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2026 Elysian Heights, Idukki. All rights reserved.</p>
+                <p>Designed for premium luxury accommodation.</p>
+            </footer>
         </div>
-        <button type="button" class="lightbox-nav-btn next" id="lightboxNext" aria-label="Next">&#10095;</button>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-btn">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Enlarged View">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <script src="script.js?v=3.1"></script>
 </body>
 </html>

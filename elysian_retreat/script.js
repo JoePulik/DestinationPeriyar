@@ -66,42 +66,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const gatePin = document.getElementById('gatePin');
     const gateError = document.getElementById('gateError');
 
-    if (!gateModal || !gateForm) return;
-
-    if (sessionStorage.getItem('er_authorized') === 'true') {
-        document.documentElement.classList.remove('gate-locked');
-        gateModal.remove();
-        return;
-    }
-
-    let attempts = 0;
-    gateForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const entered = (gatePin.value || '').trim().toLowerCase();
-        if (entered === '2026' || entered === 'joe') {
-            sessionStorage.setItem('er_authorized', 'true');
+    if (gateModal && gateForm) {
+        if (sessionStorage.getItem('er_authorized') === 'true') {
             document.documentElement.classList.remove('gate-locked');
             gateModal.remove();
         } else {
-            attempts++;
-            if (gateError) gateError.style.display = 'block';
-            gatePin.value = '';
-            gatePin.focus();
-            if (attempts >= 3) {
-                window.location.replace('../design1_single_parallax/index.html');
-            }
+            let attempts = 0;
+            gateForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const entered = (gatePin.value || '').trim().toLowerCase();
+                if (entered === '2026' || entered === 'joe') {
+                    sessionStorage.setItem('er_authorized', 'true');
+                    document.documentElement.classList.remove('gate-locked');
+                    gateModal.remove();
+                } else {
+                    attempts++;
+                    if (gateError) gateError.style.display = 'block';
+                    gatePin.value = '';
+                    gatePin.focus();
+                    if (attempts >= 3) {
+                        window.location.replace('../design1_single_parallax/index.html');
+                    }
+                }
+            });
         }
-    });
+    }
 
-    // Ensure Hero Background Video Autoplays
+    // Ensure Hero Background Video Autoplays smoothly at serene retreat tempo
     const heroVid = document.querySelector('.hero-bg-video');
     if (heroVid) {
         heroVid.muted = true;
-        const playPromise = heroVid.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(() => {
-                // Autoplay prevented by browser policy; fallback poster is active
-            });
-        }
+        heroVid.defaultMuted = true;
+        // Serene, calm playback pace
+        heroVid.playbackRate = 0.85;
+        
+        const startVideo = () => {
+            const playPromise = heroVid.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    // Autoplay prevented by browser policy; fallback poster is active
+                });
+            }
+        };
+
+        startVideo();
+        // Also ensure playback begins on first user interaction if browser blocked autoplay
+        ['click', 'touchstart', 'scroll'].forEach(evt => {
+            window.addEventListener(evt, () => {
+                if (heroVid.paused) {
+                    heroVid.play().catch(() => {});
+                }
+            }, { once: true, passive: true });
+        });
     }
 });

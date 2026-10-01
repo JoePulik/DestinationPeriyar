@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elysian Heights - Luxury Hilltop Villa in Idukki, Kerala</title>
     <meta name="description" content="Elysian Heights is an exquisite 4 BHK luxury hilltop villa overlooking the Periyar River in Idukki, Kerala.">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,143 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Exact V1 Stylesheet with cache-busting -->
-    <link rel="stylesheet" href="styles.css?v=3.4">
-
-    <!-- Private Access Lock Gate Styles & Script -->
-    <style id="private-gate-styles">
-        html.gate-locked body > *:not(#privateGateModal) {
-            display: none !important;
-        }
-        #privateGateModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 999999;
-            background-color: #0c0b09;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            color: #f4f4f0;
-            font-family: 'Inter', -apple-system, sans-serif;
-        }
-        html.gate-locked #privateGateModal {
-            display: flex !important;
-        }
-        .gate-card {
-            background: #151411;
-            border: 1px solid rgba(205, 164, 94, 0.4);
-            border-radius: 8px;
-            padding: 2.5rem 2rem;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-        }
-        .gate-tag {
-            font-size: 0.72rem;
-            letter-spacing: 0.25em;
-            color: #cda45e;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        .gate-card h2 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.85rem;
-            color: #fff;
-            margin-bottom: 0.6rem;
-            font-weight: 600;
-        }
-        .gate-card p {
-            font-size: 0.88rem;
-            color: #a4a4a0;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-        .gate-form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        .gate-input {
-            padding: 0.8rem 1rem;
-            border-radius: 4px;
-            border: 1px solid rgba(205, 164, 94, 0.3);
-            background: #0c0b09;
-            font-size: 1.1rem;
-            text-align: center;
-            letter-spacing: 0.25em;
-            color: #cda45e;
-            font-weight: 600;
-        }
-        .gate-input:focus {
-            outline: none;
-            border-color: #cda45e;
-            box-shadow: 0 0 0 3px rgba(205, 164, 94, 0.25);
-        }
-        .gate-btn {
-            padding: 0.85rem 1.5rem;
-            background: #cda45e;
-            color: #0c0b09;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.92rem;
-            transition: all 0.2s;
-        }
-        .gate-btn:hover {
-            background: #e5ba73;
-        }
-        .gate-exit {
-            margin-top: 1.25rem;
-            font-size: 0.82rem;
-            color: #a4a4a0;
-            display: inline-block;
-            text-decoration: underline;
-        }
-        .gate-exit:hover {
-            color: #cda45e;
-        }
-        .gate-error {
-            color: #ff6b6b;
-            font-size: 0.8rem;
-            margin-top: 0.4rem;
-            display: none;
-        }
-    </style>
-    <script>
-        (function() {
-            var params = new URLSearchParams(window.location.search);
-            if (params.get("access") === "joe" || params.get("pin") === "2026") {
-                sessionStorage.setItem("er_authorized", "true");
-            }
-            if (sessionStorage.getItem("er_authorized") !== "true") {
-                document.documentElement.classList.add("gate-locked");
-            }
-        })();
-    </script>
+    <link rel="stylesheet" href="styles.css?v=3.5">
 </head>
 <body>
-
-    <!-- Private Access Lock Gate (For Joe Only) -->
-    <div id="privateGateModal" role="dialog" aria-modal="true" aria-label="Private Access Gate">
-        <div class="gate-card">
-            <span class="gate-tag">Private Preview</span>
-            <h2>ELYSIAN HEIGHTS</h2>
-            <p>This draft is restricted. Please enter your authorization PIN to view.</p>
-            <form class="gate-form" id="gateForm">
-                <input type="password" id="gatePin" class="gate-input" placeholder="••••" maxlength="10" autocomplete="off" autofocus>
-                <button type="submit" class="gate-btn">Unlock View</button>
-                <span class="gate-error" id="gateError">Incorrect PIN. Please try again.</span>
-            </form>
-            <a href="../design1_single_parallax/index.html" class="gate-exit">Return to main page &rarr;</a>
-        </div>
-    </div>
 
     <!-- Exact V1 3D Parallax Scrolling Container -->
     <div class="parallax-container">
@@ -571,6 +437,6 @@
         <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
-    <script src="script.js?v=3.4"></script>
+    <script src="script.js?v=3.5"></script>
 </body>
 </html>

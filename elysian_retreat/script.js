@@ -59,40 +59,8 @@ function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
 }
 
-// Private Access Gate
+// Ensure Hero Background Video Autoplays smoothly at serene retreat tempo
 document.addEventListener('DOMContentLoaded', () => {
-    const gateModal = document.getElementById('privateGateModal');
-    const gateForm = document.getElementById('gateForm');
-    const gatePin = document.getElementById('gatePin');
-    const gateError = document.getElementById('gateError');
-
-    if (gateModal && gateForm) {
-        if (sessionStorage.getItem('er_authorized') === 'true') {
-            document.documentElement.classList.remove('gate-locked');
-            gateModal.remove();
-        } else {
-            let attempts = 0;
-            gateForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const entered = (gatePin.value || '').trim().toLowerCase();
-                if (entered === '2026' || entered === 'joe') {
-                    sessionStorage.setItem('er_authorized', 'true');
-                    document.documentElement.classList.remove('gate-locked');
-                    gateModal.remove();
-                } else {
-                    attempts++;
-                    if (gateError) gateError.style.display = 'block';
-                    gatePin.value = '';
-                    gatePin.focus();
-                    if (attempts >= 3) {
-                        window.location.replace('../design1_single_parallax/index.html');
-                    }
-                }
-            });
-        }
-    }
-
-    // Ensure Hero Background Video Autoplays smoothly at serene retreat tempo
     const heroVid = document.querySelector('.hero-bg-video');
     if (heroVid) {
         heroVid.muted = true;

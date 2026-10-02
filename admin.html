@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysian Heights - Host Booking &amp; Offer Portal</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Admin Stylesheet -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- Host Passkey Gate -->
+    <div id="adminLockOverlay" class="admin-lock-overlay">
+        <div class="admin-lock-card">
+            <span class="lock-gold-badge">Host Management Portal</span>
+            <h2>Elysian Heights</h2>
+            <p>Please enter your host authorization PIN to access booking requests, offer management, and payment records.</p>
+            <form id="adminPinForm">
+                <input type="password" id="adminPinInput" class="admin-pin-input" placeholder="••••" maxlength="10" autofocus autocomplete="off">
+                <button type="submit" class="btn-admin btn-admin-primary" style="width:100%;padding:0.85rem;font-size:0.9rem;">
+                    Unlock Dashboard &rarr;
+                </button>
+                <p id="adminPinError" style="color:#ef4444;font-size:0.8rem;margin-top:0.75rem;display:none;">Incorrect authorization PIN. Try again.</p>
+            </form>
+            <a href="index.html" style="font-size:0.8rem;color:var(--text-muted);display:inline-block;margin-top:1.5rem;text-decoration:none;">&larr; Return to main site</a>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="admin-navbar">
+        <div class="admin-nav-container">
+            <div class="admin-brand">
+                <h1>ELYSIAN HEIGHTS</h1>
+                <span class="admin-brand-tag">Host Portal</span>
+            </div>
+            <div class="admin-nav-actions">
+                <button class="btn-admin btn-admin-primary" onclick="openManualOfferModal()">
+                    + New Custom Offer
+                </button>
+                <button class="btn-admin btn-admin-secondary" onclick="exportBackupJson()" title="Download JSON backup of all reservations">
+                    📥 Export Data
+                </button>
+                <label class="btn-admin btn-admin-secondary" style="cursor:pointer;" title="Restore bookings from a JSON file">
+                    📤 Import <input type="file" accept=".json" style="display:none;" onchange="importBackupJson(event)">
+                </label>
+                <a href="index.html" class="btn-admin btn-admin-outline" target="_blank">
+                    View Website &nearr;
+                </a>
+                <button class="btn-admin btn-admin-outline" onclick="adminLogout()" title="Log out of host dashboard">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Overview Metrics Bar -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <span class="metric-title">Total Inquiries</span>
+                <div class="metric-value" id="metricTotal">0</div>
+            </div>
+            <div class="metric-card highlight-pending">
+                <span class="metric-title">Pending Approval</span>
+                <div class="metric-value" id="metricPending">0</div>
+            </div>
+            <div class="metric-card highlight-offer">
+                <span class="metric-title">Active Offers Sent</span>
+                <div class="metric-value" id="metricOffers">0</div>
+            </div>
+            <div class="metric-card highlight-confirmed">
+                <span class="metric-title">Confirmed &amp; Paid</span>
+                <div class="metric-value" id="metricConfirmed">0</div>
+            </div>
+            <div class="metric-card highlight-revenue">
+                <span class="metric-title">Total Secured Revenue</span>
+                <div class="metric-value" id="metricRevenue">₹0</div>
+            </div>
+        </section>
+
+        <!-- Pipeline Controls & Search -->
+        <section class="controls-bar">
+            <div class="pipeline-tabs">
+                <button class="tab-btn active" data-filter="ALL" onclick="setPipelineFilter('ALL')">
+                    All <span class="tab-badge" id="badgeAll">0</span>
+                </button>
+                <button class="tab-btn" data-filter="PENDING" onclick="setPipelineFilter('PENDING')">
+                    ⏳ Pending Review <span class="tab-badge" id="badgePending">0</span>
+                </button>
+                <button class="tab-btn" data-filter="OFFERS" onclick="setPipelineFilter('OFFERS')">
+                    📨 Offers Sent <span class="tab-badge" id="badgeOffers">0</span>
+                </button>
+                <button class="tab-btn" data-filter="CONFIRMED" onclick="setPipelineFilter('CONFIRMED')">
+                    ✓ Confirmed &amp; Paid <span class="tab-badge" id="badgeConfirmed">0</span>
+                </button>
+            </div>
+
+            <div class="search-box">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="#a4a4a0" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input type="text" placeholder="Search by name, phone or Ref ID..." oninput="handleSearch(this.value)">
+            </div>
+        </section>
+
+        <!-- Bookings List -->
+        <section class="bookings-list" id="bookingsListContainer">
+            <!-- Rendered by admin.js -->
+        </section>
+    </main>
+
+    <!-- Modal: Approve & Create Custom Offer -->
+    <div id="createOfferModal" class="admin-modal-overlay" role="dialog" aria-modal="true">
+        <div class="admin-modal-box">
+            <button class="modal-close-btn" onclick="closeOfferModal()">&times;</button>
+            <h3>Approve &amp; Send Custom Offer</h3>
+            <p class="modal-subtitle">
+                Review reservation <strong id="offerModalRef" style="color:var(--primary);"></strong> for <strong id="offerModalGuest" style="color:#fff;"></strong> (<span id="offerModalDates"></span>).
+            </p>
+
+            <form onsubmit="event.preventDefault(); saveAndSendOffer();">
+                <div class="modal-form-group">
+                    <label for="offerRatePerNight">Offered Rate Per Night (₹)</label>
+                    <input type="number" id="offerRatePerNight" value="28000" step="500" oninput="recalcOfferModal()" required>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div class="modal-form-group">
+                        <label for="offerDiscountPercent">Special Discount (%)</label>
+                        <input type="number" id="offerDiscountPercent" value="5" min="0" max="50" oninput="recalcOfferModal()">
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="offerAdvancePercent">Advance Required Now (%)</label>
+                        <select id="offerAdvancePercent" onchange="recalcOfferModal()">
+                            <option value="50" selected>50% Advance (Standard)</option>
+                            <option value="100">100% Full Payment</option>
+                            <option value="30">30% Booking Token</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-form-group">
+                    <label for="offerCustomNotes">Host Note &amp; Special Inclusions for Guest</label>
+                    <textarea id="offerCustomNotes" rows="3" placeholder="Add personal welcoming touches or special inclusions..."></textarea>
+                </div>
+
+                <!-- Live Offer Calculation Preview -->
+                <div class="offer-preview-box">
+                    <h5>Proposed Offer Summary</h5>
+                    <div class="offer-preview-row">
+                        <span>Base Accommodation:</span>
+                        <strong id="modalPreviewBase">₹84,000</strong>
+                    </div>
+                    <div class="offer-preview-row">
+                        <span>Special Host Discount:</span>
+                        <strong id="modalPreviewDiscount" style="color:#10b981;">-₹4,200 (5%)</strong>
+                    </div>
+                    <div class="offer-preview-row">
+                        <span>Requested Inclusions / Add-ons:</span>
+                        <strong id="modalPreviewAddons">Included</strong>
+                    </div>
+                    <div class="offer-preview-row total">
+                        <span>Total Stay Offer:</span>
+                        <span id="modalPreviewFinalTotal">₹79,800</span>
+                    </div>
+                    <div class="offer-preview-row" style="margin-top:0.4rem;color:var(--primary);">
+                        <span>Payable Now to Confirm:</span>
+                        <strong id="modalPreviewAdvance">₹39,900 (50%)</strong>
+                    </div>
+                    <div class="offer-preview-row" style="font-size:0.8rem;color:var(--text-muted);">
+                        <span>Balance at Check-In:</span>
+                        <span id="modalPreviewBalance">₹39,900</span>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:1rem;margin-top:1.5rem;">
+                    <button type="submit" class="btn-admin btn-admin-primary" style="flex:1.5;padding:0.85rem;">
+                        ✓ Save &amp; Generate Offer Link
+                    </button>
+                    <button type="button" class="btn-admin btn-admin-secondary" style="flex:1;" onclick="closeOfferModal()">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Confirm Payment Received -->
+    <div id="confirmPaymentModal" class="admin-modal-overlay" role="dialog" aria-modal="true">
+        <div class="admin-modal-box">
+            <button class="modal-close-btn" onclick="closeConfirmPaymentModal()">&times;</button>
+            <h3>Record Payment Received</h3>
+            <p class="modal-subtitle">
+                Mark payment for reservation <strong id="payModalRef" style="color:var(--primary);"></strong> (<span id="payModalGuest"></span>).
+            </p>
+
+            <form onsubmit="event.preventDefault(); recordPaymentAndConfirm();">
+                <div class="modal-form-group">
+                    <label for="payModalAmount">Amount Received (₹)</label>
+                    <input type="number" id="payModalAmount" required>
+                </div>
+
+                <div class="modal-form-group">
+                    <label for="payModalMethod">Payment Method</label>
+                    <select id="payModalMethod">
+                        <option value="UPI" selected>UPI (Google Pay, PhonePe, Paytm)</option>
+                        <option value="Bank Transfer / NEFT">Direct Bank Transfer / NEFT / RTGS</option>
+                        <option value="Card Payment">Credit / Debit Card</option>
+                        <option value="Cash on Arrival">Cash on Arrival / Advance</option>
+                    </select>
+                </div>
+
+                <div class="modal-form-group">
+                    <label for="payModalUtr">Transaction Reference / UTR Number</label>
+                    <input type="text" id="payModalUtr" placeholder="E.g. UPI/2026/894201 or Bank UTR">
+                </div>
+
+                <div style="display:flex;gap:1rem;margin-top:1.5rem;">
+                    <button type="submit" class="btn-admin btn-admin-primary" style="flex:1.5;padding:0.85rem;background:#10b981;color:#fff;">
+                        ✓ Confirm Payment &amp; Issue Voucher
+                    </button>
+                    <button type="button" class="btn-admin btn-admin-secondary" style="flex:1;" onclick="closeConfirmPaymentModal()">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Manual Custom Offer -->
+    <div id="manualOfferModal" class="admin-modal-overlay" role="dialog" aria-modal="true">
+        <div class="admin-modal-box">
+            <button class="modal-close-btn" onclick="closeManualOfferModal()">&times;</button>
+            <h3>Create Direct Custom Offer</h3>
+            <p class="modal-subtitle">Generate a custom booking offer and payment link for phone or walk-in inquiries.</p>
+
+            <form onsubmit="handleCreateManualOffer(event)">
+                <div class="modal-form-group">
+                    <label for="manualName">Guest Full Name</label>
+                    <input type="text" id="manualName" required placeholder="Guest Name">
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div class="modal-form-group">
+                        <label for="manualPhone">WhatsApp / Mobile</label>
+                        <input type="tel" id="manualPhone" required placeholder="+91 98765 43210">
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="manualEmail">Email Address</label>
+                        <input type="email" id="manualEmail" required placeholder="guest@example.com">
+                    </div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div class="modal-form-group">
+                        <label for="manualCheckIn">Check-In Date</label>
+                        <input type="date" id="manualCheckIn" required>
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="manualCheckOut">Check-Out Date</label>
+                        <input type="date" id="manualCheckOut" required>
+                    </div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div class="modal-form-group">
+                        <label for="manualAdults">Party Size</label>
+                        <select id="manualAdults">
+                            <option value="4">4 Guests</option>
+                            <option value="6" selected>6 Guests</option>
+                            <option value="8">8 Guests</option>
+                            <option value="10">10 Guests</option>
+                            <option value="12">12 Guests</option>
+                        </select>
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="manualTotal">Total Agreed Price (₹)</label>
+                        <input type="number" id="manualTotal" value="56000" step="500" required>
+                    </div>
+                </div>
+
+                <div class="modal-form-group">
+                    <label for="manualAdvance">Advance Amount Payable Now (₹)</label>
+                    <input type="number" id="manualAdvance" value="28000" step="500" required>
+                </div>
+
+                <div class="modal-form-group">
+                    <label for="manualNotes">Host Welcome Note / Terms</label>
+                    <textarea id="manualNotes" rows="2" placeholder="E.g. Exclusive 4 BHK stay, inclusive of breakfast..."></textarea>
+                </div>
+
+                <div style="display:flex;gap:1rem;margin-top:1.5rem;">
+                    <button type="submit" class="btn-admin btn-admin-primary" style="flex:1.5;padding:0.85rem;">
+                        Generate Offer &amp; Copy Payment Link &rarr;
+                    </button>
+                    <button type="button" class="btn-admin btn-admin-secondary" style="flex:1;" onclick="closeManualOfferModal()">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="admin.js"></script>
+</body>
+</html>

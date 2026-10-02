@@ -1,7 +1,7 @@
 /**
  * Destination Periyar - Host Administration Portal Styles
  * Premium dark-gold aesthetic matching the luxury homestay design
- * Uncluttered, modern mobile-first hospitality interface
+ * Polished, centered, uncluttered mobile-first interface
  */
 
 :root {
@@ -137,7 +137,7 @@ body {
 }
 
 .admin-nav-container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -148,28 +148,33 @@ body {
 .admin-brand {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
 }
 
-.admin-brand h1 {
+.admin-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-brand-text h1 {
     font-family: var(--font-serif);
     font-size: 1.35rem;
     letter-spacing: 0.08em;
     color: #fff;
     font-weight: 700;
-    white-space: nowrap;
+    line-height: 1.1;
+    margin: 0;
 }
 
-.admin-brand-tag {
+/* Subtle non-button subtitle text */
+.admin-brand-sub {
     font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    padding: 0.15rem 0.5rem;
-    background: rgba(205, 164, 94, 0.15);
-    border: 1px solid var(--primary);
-    border-radius: 4px;
+    letter-spacing: 0.16em;
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
+    display: block;
+    margin-top: 3px;
+    opacity: 0.9;
 }
 
 /* Desktop Action Buttons */
@@ -179,25 +184,18 @@ body {
     gap: 0.65rem;
 }
 
-/* Mobile Quick Actions (Hidden on Desktop) */
+/* Mobile Quick Actions (Clean Hamburger Only) */
 .mobile-nav-actions {
     display: none;
     align-items: center;
-    gap: 0.5rem;
-}
-
-.mobile-quick-add {
-    padding: 0.45rem 0.85rem !important;
-    font-size: 0.78rem !important;
-    min-height: 36px !important;
 }
 
 .mobile-menu-toggle {
     background: #0c0b09;
     border: 1px solid var(--border);
     border-radius: 6px;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -205,6 +203,12 @@ body {
     gap: 5px;
     cursor: pointer;
     padding: 8px;
+    transition: all 0.2s ease;
+}
+
+.mobile-menu-toggle:hover {
+    border-color: var(--primary);
+    background: rgba(205, 164, 94, 0.1);
 }
 
 .mobile-menu-toggle span {
@@ -298,7 +302,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(4px);
     z-index: 99999;
     display: none;
@@ -374,19 +378,21 @@ body {
    MAIN DASHBOARD CONTAINER
    ========================================================================== */
 .admin-main {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 1.75rem auto;
     padding: 0 1.25rem;
+    width: 100%;
 }
 
 /* ==========================================================================
-   METRICS BAR (DESKTOP & MOBILE COMPACT)
+   METRICS BAR
    ========================================================================== */
 .metrics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
     margin-bottom: 1.75rem;
+    width: 100%;
 }
 
 .metric-card {
@@ -444,6 +450,7 @@ body {
     gap: 0.85rem;
     margin-bottom: 1.5rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .pipeline-tabs {
@@ -453,7 +460,7 @@ body {
 }
 
 .tab-btn {
-    padding: 0.48rem 0.95rem;
+    padding: 0.45rem 0.9rem;
     background: #151411;
     border: 1px solid var(--border-subtle);
     border-radius: 50px;
@@ -537,7 +544,7 @@ body {
     border: 1px solid var(--border-subtle);
     border-radius: 50px;
     padding: 0.45rem 0.85rem;
-    min-width: 230px;
+    min-width: 220px;
 }
 
 .search-box input {
@@ -551,12 +558,13 @@ body {
 }
 
 /* ==========================================================================
-   STREAMLINED "TICKET" BOOKING CARDS
+   STREAMLINED TICKET BOOKING CARDS
    ========================================================================== */
 .bookings-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
 }
 
 .booking-ticket-card {
@@ -566,6 +574,7 @@ body {
     padding: 1.25rem 1.4rem;
     transition: all 0.2s ease;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    width: 100%;
 }
 
 .booking-ticket-card:hover {
@@ -621,7 +630,7 @@ body {
 .status-badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.25rem 0.65rem;
+    padding: 0.22rem 0.65rem;
     border-radius: 50px;
     font-size: 0.72rem;
     font-weight: 700;
@@ -794,7 +803,7 @@ body {
     border-color: #25d366;
 }
 
-/* 4. Primary Decision Actions & Details Toggle */
+/* 4. Primary Actions & Details Toggle */
 .ticket-action-bar {
     display: flex;
     align-items: center;
@@ -1124,6 +1133,7 @@ body {
     border-radius: 8px;
     padding: 3rem 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* ==========================================================================
@@ -1268,12 +1278,12 @@ body {
 }
 
 /* ==========================================================================
-   MOBILE RESPONSIVE RULES (CLEAN & UNCLUTTERED)
+   MOBILE RESPONSIVE STYLES (POLISHED & PERFECTLY CENTERED)
    ========================================================================== */
 @media (max-width: 768px) {
-    /* Navbar: Switch to clean mobile header with Menu Toggle */
+    /* Navbar: Minimalist, clean header */
     .admin-navbar {
-        padding: 0.75rem 1rem;
+        padding: 0.85rem 1rem;
     }
 
     .desktop-nav-actions {
@@ -1284,144 +1294,288 @@ body {
         display: flex !important;
     }
 
-    .admin-brand h1 {
+    .admin-brand-text h1 {
         font-size: 1.15rem;
     }
 
+    .admin-brand-sub {
+        font-size: 0.65rem;
+    }
+
+    /* Main Container: Centered Column */
     .admin-main {
-        padding: 0 0.85rem;
-        margin: 1rem auto;
-    }
-
-    /* Metrics: Sleek horizontal swipe strip (saves >200px vertical space) */
-    .metrics-grid {
+        max-width: 520px;
+        margin: 1.25rem auto;
+        padding: 0 1rem;
         display: flex;
-        overflow-x: auto;
-        gap: 0.65rem;
-        padding-bottom: 0.4rem;
-        margin-bottom: 1.25rem;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .metrics-grid::-webkit-scrollbar {
-        display: none;
+    /* Metrics: Balanced, centered 2-column grid */
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 1.5rem auto;
     }
 
     .metric-card {
-        flex: 0 0 135px;
-        padding: 0.75rem 0.85rem;
-        border-radius: 6px;
+        padding: 0.85rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .metric-card.highlight-revenue {
+        grid-column: span 2;
+        padding: 1rem;
+        background: rgba(205, 164, 94, 0.08);
+        border-color: var(--border);
     }
 
     .metric-title {
-        font-size: 0.65rem;
-        margin-bottom: 0.2rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-size: 0.68rem;
+        text-align: center;
+        margin-bottom: 0.25rem;
     }
 
     .metric-value {
-        font-size: 1.35rem;
+        font-size: 1.45rem;
+        text-align: center;
     }
 
-    /* Controls bar */
+    /* Controls Bar: Centered */
     .controls-bar {
+        display: flex;
         flex-direction: column;
-        align-items: stretch;
-        gap: 0.65rem;
-        margin-bottom: 1.15rem;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 1.25rem auto;
     }
 
     .pipeline-tabs {
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 0.35rem;
         display: flex;
-        gap: 0.35rem;
-        scrollbar-width: none;
-    }
-
-    .pipeline-tabs::-webkit-scrollbar {
-        display: none;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        width: 100%;
     }
 
     .tab-btn {
-        flex-shrink: 0;
-        padding: 0.42rem 0.75rem;
+        flex: 0 1 auto;
+        padding: 0.42rem 0.8rem;
         font-size: 0.75rem;
+        justify-content: center;
     }
 
     .controls-right {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 0.5rem;
         width: 100%;
     }
 
     .sort-box {
         width: 100%;
-        padding: 0.35rem 0.65rem;
+        justify-content: center;
+        text-align: center;
+        padding: 0.45rem 0.85rem;
     }
 
     .sort-select {
-        font-size: 0.76rem;
-        width: 100%;
+        text-align: center;
+        font-size: 0.8rem;
     }
 
     .search-box {
         width: 100%;
         min-width: unset;
-        padding: 0.35rem 0.65rem;
+        justify-content: center;
+        padding: 0.45rem 0.85rem;
     }
 
-    /* Booking Ticket Card Mobile Styling */
+    .search-box input {
+        text-align: center;
+        font-size: 0.85rem;
+    }
+
+    /* Bookings List & Cards: Centered */
+    .bookings-list {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .booking-ticket-card {
-        padding: 1.1rem 1rem;
-        border-radius: 8px;
+        padding: 1.2rem 1rem;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* 1. Header Centering */
+    .ticket-header-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.45rem;
+        width: 100%;
+    }
+
+    .ticket-guest-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
     }
 
     .ticket-guest-name {
-        font-size: 1.15rem;
+        text-align: center;
+        font-size: 1.25rem;
     }
 
+    .ticket-sub-meta {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .ticket-badge-wrap {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* 2. Summary Strip: Centered 2 Columns */
     .ticket-summary-strip {
-        padding: 0.6rem 0.75rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        text-align: center;
+        width: 100%;
+        padding: 0.65rem 0.5rem;
+    }
+
+    .summary-col-dates {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .summary-dates-text {
-        font-size: 0.8rem;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.82rem;
     }
 
-    .summary-tariff-text strong {
-        font-size: 0.98rem;
-    }
-
-    .ticket-action-bar {
-        flex-direction: row;
+    .summary-col-tariff {
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 0.4rem;
+        text-align: center;
+    }
+
+    .summary-tariff-text {
+        text-align: center;
+    }
+
+    /* 3. Quick Contacts Centering */
+    .ticket-quick-contacts {
+        justify-content: center;
+        width: 100%;
+        gap: 0.45rem;
+    }
+
+    .quick-chip {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    /* 4. Action Bar Centering */
+    .ticket-action-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
     }
 
     .ticket-primary-actions {
-        flex: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
     }
 
     .btn-clean-action {
-        flex: 1;
-        padding: 0.6rem 0.75rem;
-        font-size: 0.78rem;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
         min-height: 42px;
+        font-size: 0.82rem;
     }
 
     .btn-drawer-toggle {
-        padding: 0.6rem 0.75rem;
-        min-height: 42px;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        min-height: 38px;
     }
 
-    /* Modal adjustments on mobile */
+    /* 5. Drawer Centering */
+    .drawer-section {
+        text-align: center;
+    }
+
+    .drawer-contact-line {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .addons-tag-list {
+        justify-content: center;
+    }
+
+    .payment-settled-badge {
+        text-align: center;
+    }
+
+    .drawer-status-control {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        justify-content: center;
+    }
+
+    .drawer-secondary-buttons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .btn-drawer-btn {
+        flex: 1 1 calc(50% - 0.5rem);
+        text-align: center;
+        justify-content: center;
+        min-height: 38px;
+    }
+
+    /* Modals on Mobile */
     .admin-modal-overlay {
         padding: 0.5rem;
         align-items: flex-end;
@@ -1454,31 +1608,29 @@ body {
 }
 
 @media (max-width: 480px) {
-    .controls-right {
-        grid-template-columns: 1fr;
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
     }
 
-    .ticket-header-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.35rem;
+    .metric-card {
+        padding: 0.75rem 0.5rem;
     }
 
-    .ticket-badge-wrap {
-        justify-content: flex-start;
+    .metric-value {
+        font-size: 1.35rem;
     }
 
     .ticket-summary-strip {
-        flex-direction: column;
-        align-items: flex-start;
+        grid-template-columns: 1fr;
         gap: 0.4rem;
     }
 
-    .summary-tariff-text {
-        text-align: left;
+    .summary-dates-text {
+        font-size: 0.78rem;
     }
 
     .btn-clean-action {
-        font-size: 0.74rem;
+        font-size: 0.76rem;
     }
 }

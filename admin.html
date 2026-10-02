@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elysian Heights - Host Booking &amp; Offer Portal</title>
+    <title>Destination Periyar - Host Booking &amp; Offer Portal</title>
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Fonts -->
@@ -20,7 +20,7 @@
     <div id="adminLockOverlay" class="admin-lock-overlay">
         <div class="admin-lock-card">
             <span class="lock-gold-badge">Host Management Portal</span>
-            <h2>Elysian Heights</h2>
+            <h2>Destination Periyar</h2>
             <p>Please enter your host authorization PIN to access booking requests, offer management, and payment records.</p>
             <form id="adminPinForm">
                 <input type="password" id="adminPinInput" class="admin-pin-input" placeholder="••••" maxlength="10" autofocus autocomplete="off">
@@ -37,7 +37,7 @@
     <header class="admin-navbar">
         <div class="admin-nav-container">
             <div class="admin-brand">
-                <h1>ELYSIAN HEIGHTS</h1>
+                <h1>DESTINATION PERIYAR</h1>
                 <span class="admin-brand-tag">Host Portal</span>
             </div>
             <div class="admin-nav-actions">
@@ -101,11 +101,25 @@
                 <button class="tab-btn" data-filter="CONFIRMED" onclick="setPipelineFilter('CONFIRMED')">
                     ✓ Confirmed &amp; Paid <span class="tab-badge" id="badgeConfirmed">0</span>
                 </button>
+                <button class="tab-btn" data-filter="COMPLETED" onclick="setPipelineFilter('COMPLETED')">
+                    🏠 Past Stays <span class="tab-badge" id="badgeCompleted">0</span>
+                </button>
             </div>
 
-            <div class="search-box">
-                <svg viewBox="0 0 24 24" width="18" height="18" stroke="#a4a4a0" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                <input type="text" placeholder="Search by name, phone or Ref ID..." oninput="handleSearch(this.value)">
+            <div class="controls-right">
+                <div class="sort-box">
+                    <label for="adminSortSelect" class="sort-label">Sort:</label>
+                    <select id="adminSortSelect" onchange="handleSortChange(this.value)" class="sort-select">
+                        <option value="created_desc" selected>🕒 Inquiry Date (Newest first)</option>
+                        <option value="checkin_asc">📅 Check-In Date (Soonest first)</option>
+                        <option value="revenue_desc">💰 Value (Highest first)</option>
+                    </select>
+                </div>
+
+                <div class="search-box">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="#a4a4a0" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <input type="text" placeholder="Search by name, phone or Ref ID..." oninput="handleSearch(this.value)">
+                </div>
             </div>
         </section>
 

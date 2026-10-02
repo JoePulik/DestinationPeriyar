@@ -1,4 +1,4 @@
-/* Design 1 Stylesheet - Elysian Heights (Dark Parallax) */
+/* Design 1 Stylesheet - Destination Periyar (Dark Parallax) */
 :root {
     --primary: #cda45e;
     --primary-hover: #e5ba73;
@@ -47,6 +47,34 @@ body {
     z-index: 1;
 }
 
+/* ==========================================================================
+   CUSTOM LUXURY DARK-GOLD SCROLLBAR
+   ========================================================================== */
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0c0b09;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #28241e;
+    border-radius: 5px;
+    border: 2px solid #0c0b09;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #cda45e;
+}
+
+/* Firefox Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #28241e #0c0b09;
+}
+
 .parallax-layer {
     position: absolute;
     top: 0;
@@ -57,7 +85,7 @@ body {
 
 .bg-layer {
     transform: translateZ(-8px) scale(2);
-    background-image: url('../extracted_images/frame_01.jpg');
+    background-image: url('./extracted_images/frame_01.jpg');
     background-size: cover;
     background-position: center;
     height: 100%;
@@ -373,11 +401,11 @@ body {
 }
 
 .bg-divider1 {
-    background-image: url('../extracted_images/frame_05.jpg');
+    background-image: url('./extracted_images/frame_05.jpg');
 }
 
 .bg-divider2 {
-    background-image: url('../extracted_images/frame_08.jpg');
+    background-image: url('./extracted_images/frame_08.jpg');
 }
 
 .parallax-divider .overlay {

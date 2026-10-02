@@ -1,16 +1,16 @@
 /**
- * Elysian Heights - Luxury Hilltop Homestay
+ * Destination Periyar - Luxury Hilltop Homestay
  * Core Scripts: Parallax Video, Gallery Lightbox & Homestay Booking Engine
  */
 
 // ==========================================================================
 // 1. DATA STORAGE & INITIALIZATION
 // ==========================================================================
-const STORAGE_KEY = 'elysian_homestay_bookings';
+const STORAGE_KEY = 'destination_periyar_bookings';
 
 function getStoredBookings() {
     try {
-        const data = localStorage.getItem(STORAGE_KEY);
+        const data = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('elysian_homestay_bookings');
         return data ? JSON.parse(data) : [];
     } catch (e) {
         console.error('Error reading bookings:', e);
@@ -32,7 +32,7 @@ function saveStoredBookings(bookings) {
     if (!existing || existing.length === 0) {
         const seed = [
             {
-                id: 'EH-2026-7241',
+                id: 'DP-2026-7241',
                 guestName: 'David & Sarah Jenkins',
                 phone: '+44 7911 123456',
                 email: 'david.jenkins@uktravel.com',
@@ -51,7 +51,7 @@ function saveStoredBookings(bookings) {
                 payment: null
             },
             {
-                id: 'EH-2026-6184',
+                id: 'DP-2026-6184',
                 guestName: 'Dr. Rajesh Kumar',
                 phone: '+91 98401 23456',
                 email: 'rajesh.kumar@healthplus.org',
@@ -79,7 +79,7 @@ function saveStoredBookings(bookings) {
                 payment: null
             },
             {
-                id: 'EH-2026-5092',
+                id: 'DP-2026-5092',
                 guestName: 'Ananya & Rohan Varma',
                 phone: '+91 98200 98765',
                 email: 'ananya.varma@designstudio.in',
@@ -260,7 +260,7 @@ function handleHomestayBooking(event) {
 
     // Generate unique reference
     const randNum = Math.floor(1000 + Math.random() * 9000);
-    const bookingId = `EH-2026-${randNum}`;
+    const bookingId = `DP-2026-${randNum}`;
 
     const newBooking = {
         id: bookingId,
@@ -295,14 +295,14 @@ function handleHomestayBooking(event) {
     document.getElementById('modalEstTotal').innerText = `₹${stay.total.toLocaleString('en-IN')}`;
 
     // WhatsApp Direct Link
-    const waText = `*Elysian Heights - Homestay Booking Request*\n` +
+    const waText = `*Destination Periyar - Homestay Booking Request*\n` +
                    `Reference: ${bookingId}\n` +
                    `Guest: ${name}\n` +
                    `Dates: ${stay.inDateStr} to ${stay.outDateStr} (${stay.nights} Nights)\n` +
                    `Party: ${adults} Adults, ${children} Children\n` +
                    (stay.selectedAddons.length > 0 ? `Addons: ${stay.selectedAddons.map(a => a.name).join(', ')}\n` : '') +
                    `Estimated Total: ₹${stay.total.toLocaleString('en-IN')}\n\n` +
-                   `Hello Host! I have submitted a booking request for Elysian Heights homestay. Awaiting your approval and offer details!`;
+                   `Hello Host! I have submitted a booking request for Destination Periyar homestay. Awaiting your approval and offer details!`;
 
     const waBtn = document.getElementById('modalWhatsAppBtn');
     if (waBtn) {
@@ -332,7 +332,7 @@ function closeBookingModal() {
 
 function dispatchGeneralWhatsApp() {
     const name = (document.getElementById('guestName')?.value || '').trim() || 'Guest';
-    const text = `*Elysian Heights - Stay Inquiry*\nHello Host, I am interested in booking Elysian Heights homestay in Idukki. Could you please share availability and rates?`;
+    const text = `*Destination Periyar - Stay Inquiry*\nHello Host, I am interested in booking Destination Periyar homestay in Idukki. Could you please share availability and rates?`;
     window.open('https://wa.me/919876543210?text=' + encodeURIComponent(text), '_blank');
 }
 

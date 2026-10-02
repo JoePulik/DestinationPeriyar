@@ -1,6 +1,6 @@
 /**
  * Destination Periyar - Host Administration Portal Logic
- * Designed for effortless travel booking management, quick approvals, and host operations
+ * Designed for effortless travel booking management, quick approvals, and a clean uncluttered mobile experience
  */
 
 const STORAGE_KEY = 'destination_periyar_bookings';
@@ -52,8 +52,30 @@ function adminLogout() {
     window.location.reload();
 }
 
+// Mobile Slide-Out Menu Handlers
+function toggleMobileMenu() {
+    const drawer = document.getElementById('mobileMenuDrawer');
+    const overlay = document.getElementById('mobileDrawerOverlay');
+    if (drawer && overlay) {
+        const isActive = drawer.classList.contains('active');
+        drawer.classList.toggle('active', !isActive);
+        overlay.classList.toggle('active', !isActive);
+        document.body.style.overflow = !isActive ? 'hidden' : '';
+    }
+}
+
+function closeMobileMenu() {
+    const drawer = document.getElementById('mobileMenuDrawer');
+    const overlay = document.getElementById('mobileDrawerOverlay');
+    if (drawer && overlay) {
+        drawer.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
 // ==========================================================================
-// 2. DATA MANAGEMENT (LOCALSTORAGE & SEED DATA)
+// 2. DATA MANAGEMENT (LOCALSTORAGE & DEMO DATA)
 // ==========================================================================
 function fetchBookings() {
     try {
@@ -248,27 +270,39 @@ function getStayTimelineBadge(b) {
     }
 
     if (today >= checkInDate && today <= checkOutDate) {
-        return '<span class="timeline-badge in-house">🏡 Guest In-House</span>';
+        return '<span class="timeline-badge in-house">🏡 In-House</span>';
     }
 
     if (diffDays === 0) {
-        return '<span class="timeline-badge today">🔥 Check-in TODAY</span>';
+        return '<span class="timeline-badge today">🔥 TODAY</span>';
     } else if (diffDays === 1) {
-        return '<span class="timeline-badge tomorrow">⚡ Check-in Tomorrow</span>';
+        return '<span class="timeline-badge tomorrow">⚡ Tomorrow</span>';
     } else if (diffDays > 1 && diffDays <= 7) {
-        return `<span class="timeline-badge soon">⏳ In ${diffDays} Days</span>`;
+        return `<span class="timeline-badge soon">⏳ In ${diffDays}d</span>`;
     } else if (diffDays > 7 && diffDays <= 30) {
         const weeks = Math.round(diffDays / 7);
-        return `<span class="timeline-badge upcoming">📅 In ~${weeks} ${weeks === 1 ? 'Week' : 'Weeks'}</span>`;
-    } else if (diffDays > 30) {
-        return `<span class="timeline-badge upcoming">📅 ${b.checkIn}</span>`;
+        return `<span class="timeline-badge upcoming">📅 In ~${weeks}w</span>`;
     }
 
     return '';
 }
 
+// Expand/Collapse Details Drawer on a Booking Card
+function toggleBookingDrawer(id) {
+    const drawer = document.getElementById(`drawer-${id}`);
+    const btn = document.getElementById(`drawer-btn-${id}`);
+    if (!drawer) return;
+
+    const isOpen = drawer.classList.contains('open');
+    drawer.classList.toggle('open', !isOpen);
+    if (btn) {
+        btn.innerHTML = !isOpen ? 'Hide Details ▴' : 'Details ▾';
+        btn.classList.toggle('active', !isOpen);
+    }
+}
+
 // ==========================================================================
-// 5. RENDERING BOOKINGS LIST
+// 5. RENDERING BOOKINGS LIST (CLEAN, UNCLUTTERED HOSPITALITY CARDS)
 // ==========================================================================
 function renderBookingsList() {
     const container = document.getElementById('bookingsListContainer');
@@ -309,9 +343,9 @@ function renderBookingsList() {
     if (filtered.length === 0) {
         container.innerHTML = `
             <div class="empty-state-box">
-                <div style="font-size:2.5rem;margin-bottom:0.75rem;">📋</div>
-                <h4 style="color:#fff;margin-bottom:0.5rem;font-size:1.15rem;">No Reservations Found</h4>
-                <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1.25rem;">
+                <div style="font-size:2.2rem;margin-bottom:0.5rem;">📋</div>
+                <h4 style="color:#fff;margin-bottom:0.4rem;font-size:1.1rem;">No Reservations Found</h4>
+                <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:1.25rem;">
                     ${searchQuery ? `No reservations matching "${searchQuery}".` : 'No bookings in this pipeline stage.'}
                 </p>
                 <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
@@ -335,15 +369,22 @@ function generateBookingCardHtml(b) {
         'DECLINED': 'status-declined'
     };
 
+    const statusLabelMap = {
+        'PENDING_APPROVAL': 'Pending',
+        'OFFER_SENT': 'Offer Sent',
+        'CONFIRMED': 'Confirmed',
+        'COMPLETED': 'Completed',
+        'DECLINED': 'Declined'
+    };
+
     const statusClass = statusClassMap[b.status] || 'status-pending';
+    const statusLabel = statusLabelMap[b.status] || b.status;
 
     // Relative created time
     const createdDate = new Date(b.createdAt);
     const dateFormatted = createdDate.toLocaleDateString('en-IN', {
         month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
+        day: 'numeric'
     });
 
     // Stay urgency tag
@@ -364,19 +405,18 @@ function generateBookingCardHtml(b) {
     // Addons tags
     const addonsHtml = (b.addons && b.addons.length > 0)
         ? b.addons.map(a => `<span class="addon-pill">${a}</span>`).join('')
-        : '<span style="font-size:0.78rem;color:var(--text-muted);">Standard Inclusions Only</span>';
+        : '<span style="font-size:0.75rem;color:var(--text-muted);">Standard Inclusions</span>';
 
     // WhatsApp Message Templates for Destination Periyar
     const waOfferMsg = `*Destination Periyar - Homestay Booking Offer Approved!* 🌿\n\n` +
                        `Dear ${b.guestName},\n` +
                        `We are pleased to approve your stay request (Ref: *${b.id}*)!\n\n` +
                        `📅 *Dates:* ${b.checkIn} to ${b.checkOut} (${b.nights} Nights)\n` +
-                       `👥 *Party:* ${b.adults} Adults${b.children > 0 ? ', ' + b.children + ' Children' : ''} (Entire 4 BHK Private Estate)\n` +
+                       `👥 *Party:* ${b.adults} Adults${b.children > 0 ? ', ' + b.children + ' Children' : ''} (Entire 4 BHK Estate)\n` +
                        `💰 *Total Stay Tariff:* ₹${displayTotal.toLocaleString('en-IN')}\n` +
                        `🔒 *Advance to Secure (50%):* ₹${advanceAmount.toLocaleString('en-IN')}\n` +
                        (b.offer?.hostNotes ? `\n📝 *Host Note:* "${b.offer.hostNotes}"\n` : '') +
-                       `\n👉 *Review your offer and complete advance payment here:*\n${paymentUrl}\n\n` +
-                       `We look forward to hosting you at Destination Periyar!`;
+                       `\n👉 *Review offer & pay advance securely:*\n${paymentUrl}`;
 
     const waConfirmMsg = `*Destination Periyar - Booking Confirmed!* 🎉\n\n` +
                          `Dear ${b.guestName},\n` +
@@ -386,178 +426,195 @@ function generateBookingCardHtml(b) {
                          `📅 *Check-Out:* ${b.checkOut} (until 11:00 AM)\n` +
                          `📍 *Location:* Destination Periyar, Periyar River Bluff, Idukki Highlands, Kerala\n` +
                          `📞 *Caretaker Contact:* +91 98765 43210 (Mr. Thomas)\n\n` +
-                         `📄 *View your official Stay Voucher & Pass here:*\n${paymentUrl}`;
+                         `📄 *View your official Stay Voucher & Pass:*\n${paymentUrl}`;
 
-    // Smart Action Buttons based on Status
-    let actionButtons = '';
+    // Smart Primary Actions based on Status
+    let primaryActionBtn = '';
+    let secondaryActionBtn = '';
 
     if (b.status === 'PENDING_APPROVAL') {
-        actionButtons = `
-            <button class="btn-admin btn-admin-quick-approve" onclick="quickApproveBooking('${b.id}')" title="Approve immediately with standard 50% advance">
-                ⚡ 1-Click Approve (50% Advance)
-            </button>
-            <button class="btn-admin btn-admin-primary" onclick="openOfferModal('${b.id}')" title="Customise tariff, give special discounts or custom notes">
-                ✏️ Custom Offer
-            </button>
-            <a href="tel:${telPhone}" class="btn-admin btn-admin-outline" title="Call guest directly">
-                📞 Call
-            </a>
-            <button class="btn-admin btn-admin-outline btn-decline" onclick="declineBooking('${b.id}')" title="Decline request">
-                Decline
+        primaryActionBtn = `
+            <button class="btn-clean-action btn-clean-approve" onclick="quickApproveBooking('${b.id}')" title="Approve immediately with standard 50% advance">
+                ⚡ 1-Click Approve (50%)
             </button>
         `;
     } else if (b.status === 'OFFER_SENT') {
-        actionButtons = `
-            <a href="https://wa.me/${waPhone}?text=${encodeURIComponent(waOfferMsg)}" target="_blank" class="btn-admin btn-admin-whatsapp" title="Send offer directly to guest WhatsApp">
-                💬 Send Offer via WhatsApp
-            </a>
-            <button class="btn-admin btn-admin-primary btn-record-pay" onclick="openConfirmPaymentModal('${b.id}')" title="Mark advance payment as received">
-                ✓ Record Payment
-            </button>
-            <button class="btn-admin btn-admin-outline" onclick="copyPaymentLink('${paymentUrl}', this)">
-                🔗 Copy Link
-            </button>
-            <button class="btn-admin btn-admin-outline" onclick="openOfferModal('${b.id}')" title="Edit offer rates">
-                ✏️ Edit Offer
-            </button>
-            <a href="tel:${telPhone}" class="btn-admin btn-admin-outline" title="Call guest">
-                📞 Call
+        primaryActionBtn = `
+            <a href="https://wa.me/${waPhone}?text=${encodeURIComponent(waOfferMsg)}" target="_blank" class="btn-clean-action btn-clean-whatsapp">
+                💬 WhatsApp Offer
             </a>
         `;
+        secondaryActionBtn = `
+            <button class="btn-clean-action btn-clean-pay" onclick="openConfirmPaymentModal('${b.id}')">
+                ✓ Mark Paid
+            </button>
+        `;
     } else if (b.status === 'CONFIRMED') {
-        actionButtons = `
-            <a href="${paymentUrl}" target="_blank" class="btn-admin btn-admin-outline" title="Open guest voucher">
+        primaryActionBtn = `
+            <a href="${paymentUrl}" target="_blank" class="btn-clean-action btn-clean-voucher">
                 📄 View Voucher
             </a>
-            <a href="https://wa.me/${waPhone}?text=${encodeURIComponent(waConfirmMsg)}" target="_blank" class="btn-admin btn-admin-whatsapp" title="Send official voucher on WhatsApp">
-                💬 Send Voucher on WhatsApp
-            </a>
-            <button class="btn-admin btn-admin-secondary" onclick="quickUpdateStatus('${b.id}', 'COMPLETED')" title="Mark guest stay as completed">
-                🏠 Mark Stay Completed
-            </button>
-            <a href="tel:${telPhone}" class="btn-admin btn-admin-outline" title="Call guest">
-                📞 Call
+        `;
+        secondaryActionBtn = `
+            <a href="https://wa.me/${waPhone}?text=${encodeURIComponent(waConfirmMsg)}" target="_blank" class="btn-clean-action btn-clean-whatsapp">
+                💬 WhatsApp
             </a>
         `;
     } else if (b.status === 'COMPLETED') {
-        actionButtons = `
-            <a href="${paymentUrl}" target="_blank" class="btn-admin btn-admin-outline">
-                📄 View Voucher
+        primaryActionBtn = `
+            <a href="${paymentUrl}" target="_blank" class="btn-clean-action btn-clean-voucher">
+                📄 View Record
             </a>
-            <a href="https://wa.me/${waPhone}?text=${encodeURIComponent('Hello ' + b.guestName + '! Thank you for staying with us at Destination Periyar. We hope you had a memorable retreat!')}" target="_blank" class="btn-admin btn-admin-outline" style="border-color:#25d366;color:#25d366;">
-                ⭐ Request Review
-            </a>
-            <button class="btn-admin btn-admin-outline" onclick="quickUpdateStatus('${b.id}', 'CONFIRMED')">
-                🔄 Reopen Stay
-            </button>
-            <button class="btn-admin btn-admin-outline" style="color:#ef4444;" onclick="deleteBooking('${b.id}')">
-                🗑️ Archive
-            </button>
         `;
     } else if (b.status === 'DECLINED') {
-        actionButtons = `
-            <button class="btn-admin btn-admin-outline" onclick="reopenBooking('${b.id}')">
-                🔄 Reopen Request
-            </button>
-            <button class="btn-admin btn-admin-outline" style="color:#ef4444;" onclick="deleteBooking('${b.id}')">
-                🗑️ Delete
+        primaryActionBtn = `
+            <button class="btn-clean-action btn-clean-outline" onclick="reopenBooking('${b.id}')">
+                🔄 Reopen
             </button>
         `;
     }
 
     return `
-        <div class="booking-item-card" id="card-${b.id}">
-            <!-- Top Bar: Reference, Timeline, and Instant Status Switcher -->
-            <div class="booking-card-top">
-                <div class="booking-meta-left">
-                    <span class="booking-id-tag">${b.id}</span>
-                    ${timelineBadge}
-                    <span class="booking-time-ago" title="Requested at ${b.createdAt}">🕒 ${dateFormatted}</span>
+        <div class="booking-ticket-card" id="card-${b.id}">
+            <!-- 1. Ticket Top Row: Guest Name & Status Badge -->
+            <div class="ticket-header-row">
+                <div class="ticket-guest-wrap">
+                    <h3 class="ticket-guest-name">${b.guestName}</h3>
+                    <div class="ticket-sub-meta">
+                        <span>👥 ${b.adults} Adults${b.children > 0 ? ', ' + b.children + ' Kids' : ''}</span>
+                        <span class="meta-dot">&bull;</span>
+                        <span class="ticket-ref">${b.id}</span>
+                        <span class="meta-dot">&bull;</span>
+                        <span class="ticket-date-time">${dateFormatted}</span>
+                    </div>
                 </div>
 
-                <div class="booking-meta-right">
-                    <label class="status-quick-label" title="Change status instantly">Status:</label>
-                    <select class="status-select-inline ${statusClass}" onchange="quickUpdateStatus('${b.id}', this.value)">
-                        <option value="PENDING_APPROVAL" ${b.status === 'PENDING_APPROVAL' ? 'selected' : ''}>⏳ Pending Approval</option>
-                        <option value="OFFER_SENT" ${b.status === 'OFFER_SENT' ? 'selected' : ''}>📨 Offer Sent</option>
-                        <option value="CONFIRMED" ${b.status === 'CONFIRMED' ? 'selected' : ''}>✓ Confirmed &amp; Paid</option>
-                        <option value="COMPLETED" ${b.status === 'COMPLETED' ? 'selected' : ''}>🏠 Completed</option>
-                        <option value="DECLINED" ${b.status === 'DECLINED' ? 'selected' : ''}>✕ Declined</option>
-                    </select>
+                <div class="ticket-badge-wrap">
+                    ${timelineBadge}
+                    <span class="status-badge ${statusClass}">${statusLabel}</span>
                 </div>
             </div>
 
-            <!-- Main Information Grid (Responsive) -->
-            <div class="booking-card-grid">
-                <!-- Guest Column -->
-                <div class="guest-info-block">
-                    <div class="card-section-label">Guest Information</div>
-                    <h4 class="guest-name">${b.guestName}</h4>
-                    <div class="guest-contact-links">
-                        <a href="https://wa.me/${waPhone}" target="_blank" class="contact-link whatsapp" title="Chat on WhatsApp">
-                            <span class="contact-icon">📱</span> ${b.phone}
-                        </a>
-                        <a href="mailto:${b.email}" class="contact-link email" title="Send Email">
-                            <span class="contact-icon">✉️</span> ${b.email}
-                        </a>
+            <!-- 2. Stay Dates & Financial Row -->
+            <div class="ticket-summary-strip">
+                <div class="summary-col-dates">
+                    <span class="summary-label">Stay Itinerary</span>
+                    <div class="summary-dates-text">
+                        📅 <strong>${b.checkIn}</strong> &rarr; <strong>${b.checkOut}</strong>
+                        <span class="nights-pill">${b.nights}N</span>
+                    </div>
+                </div>
+
+                <div class="summary-col-tariff">
+                    <span class="summary-label">Stay Tariff</span>
+                    <div class="summary-tariff-text">
+                        <strong>₹${displayTotal.toLocaleString('en-IN')}</strong>
+                        <span class="summary-advance-sub">Adv: ₹${advanceAmount.toLocaleString('en-IN')}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Quick One-Tap Contact Chips -->
+            <div class="ticket-quick-contacts">
+                <a href="https://wa.me/${waPhone}" target="_blank" class="quick-chip wa" title="Chat on WhatsApp">
+                    💬 WhatsApp
+                </a>
+                <a href="tel:${telPhone}" class="quick-chip call" title="Call guest directly">
+                    📞 Call
+                </a>
+                <button class="quick-chip copy" onclick="copyPaymentLink('${paymentUrl}', this)" title="Copy payment & voucher link">
+                    🔗 Copy Link
+                </button>
+            </div>
+
+            <!-- 4. Primary Decision Actions & Details Toggle -->
+            <div class="ticket-action-bar">
+                <div class="ticket-primary-actions">
+                    ${primaryActionBtn}
+                    ${secondaryActionBtn}
+                </div>
+                <button class="btn-drawer-toggle" id="drawer-btn-${b.id}" onclick="toggleBookingDrawer('${b.id}')">
+                    Details ▾
+                </button>
+            </div>
+
+            <!-- 5. Collapsible Drawer (Details, Inclusions, Notes, Status Switcher) -->
+            <div class="ticket-drawer" id="drawer-${b.id}">
+                <div class="drawer-inner">
+                    <!-- Guest Contact Details -->
+                    <div class="drawer-section">
+                        <div class="drawer-section-title">Guest Contact &amp; Requests</div>
+                        <div class="drawer-contact-line">
+                            <span>✉️ Email:</span> <a href="mailto:${b.email}">${b.email}</a>
+                        </div>
                         ${b.notes ? `
                             <div class="guest-note-box">
                                 <span class="note-quote">“</span>${b.notes}<span class="note-quote">”</span>
                             </div>
                         ` : ''}
                     </div>
-                </div>
 
-                <!-- Stay Details Column -->
-                <div class="stay-info-block">
-                    <div class="card-section-label">Stay Details</div>
-                    <div class="stay-dates-line">
-                        <span class="stay-calendar-icon">📅</span>
-                        <strong>${b.checkIn}</strong> &rarr; <strong>${b.checkOut}</strong>
-                        <span class="nights-pill">${b.nights} ${b.nights === 1 ? 'Night' : 'Nights'}</span>
-                    </div>
-                    <div class="stay-badge-party">
-                        👥 <strong>${b.adults} Adults</strong>${b.children > 0 ? `, <strong>${b.children} Children</strong>` : ''} &bull; Entire 4 BHK Villa
-                    </div>
-                    <div class="addons-tag-list">
-                        ${addonsHtml}
-                    </div>
-                </div>
-
-                <!-- Financial Column -->
-                <div class="financial-block">
-                    <div class="card-section-label">Tariff &amp; Payment</div>
-                    <div class="financial-sub">${b.offer ? 'Approved Offer Total' : 'Estimated Stay Tariff'}</div>
-                    <div class="financial-total">₹${displayTotal.toLocaleString('en-IN')}</div>
-                    
-                    <div class="financial-advance-row">
-                        <span>Advance Required:</span>
-                        <strong>₹${advanceAmount.toLocaleString('en-IN')}</strong>
+                    <!-- Requested Addons -->
+                    <div class="drawer-section">
+                        <div class="drawer-section-title">Selected Inclusions / Add-ons</div>
+                        <div class="addons-tag-list">
+                            ${addonsHtml}
+                        </div>
                     </div>
 
+                    <!-- Payment Status & UTR -->
                     ${b.payment ? `
-                        <div class="payment-settled-badge">
-                            <span class="pay-check">✓</span> Paid: ₹${b.payment.amountPaid.toLocaleString('en-IN')} via ${b.payment.method}
-                            <div style="font-size:0.7rem;color:var(--text-muted);font-family:monospace;margin-top:0.2rem;">Ref: ${b.payment.reference}</div>
+                        <div class="drawer-section">
+                            <div class="drawer-section-title">Payment Settlement</div>
+                            <div class="payment-settled-badge">
+                                <span class="pay-check">✓</span> Received: ₹${b.payment.amountPaid.toLocaleString('en-IN')} via ${b.payment.method}
+                                <div style="font-size:0.72rem;color:var(--text-muted);font-family:monospace;margin-top:0.25rem;">Ref: ${b.payment.reference}</div>
+                            </div>
                         </div>
-                    ` : (b.status === 'OFFER_SENT' ? `
-                        <div class="payment-pending-badge">
-                            ⏳ Waiting for Guest Advance
-                        </div>
-                    ` : '')}
-                </div>
-            </div>
+                    ` : ''}
 
-            <!-- Action Buttons Row -->
-            <div class="booking-card-actions">
-                ${actionButtons}
+                    <!-- Host Status Control & Tools -->
+                    <div class="drawer-section drawer-tools-section">
+                        <div class="drawer-status-control">
+                            <label class="status-quick-label">Change Status:</label>
+                            <select class="status-select-inline ${statusClass}" onchange="quickUpdateStatus('${b.id}', this.value)">
+                                <option value="PENDING_APPROVAL" ${b.status === 'PENDING_APPROVAL' ? 'selected' : ''}>⏳ Pending Approval</option>
+                                <option value="OFFER_SENT" ${b.status === 'OFFER_SENT' ? 'selected' : ''}>📨 Offer Sent</option>
+                                <option value="CONFIRMED" ${b.status === 'CONFIRMED' ? 'selected' : ''}>✓ Confirmed &amp; Paid</option>
+                                <option value="COMPLETED" ${b.status === 'COMPLETED' ? 'selected' : ''}>🏠 Completed</option>
+                                <option value="DECLINED" ${b.status === 'DECLINED' ? 'selected' : ''}>✕ Declined</option>
+                            </select>
+                        </div>
+
+                        <div class="drawer-secondary-buttons">
+                            ${b.status === 'PENDING_APPROVAL' || b.status === 'OFFER_SENT' ? `
+                                <button class="btn-drawer-btn" onclick="openOfferModal('${b.id}')">
+                                    ✏️ Custom Rates / Discount
+                                </button>
+                                <button class="btn-drawer-btn decline" onclick="declineBooking('${b.id}')">
+                                    ✕ Decline Request
+                                </button>
+                            ` : ''}
+                            ${b.status === 'CONFIRMED' ? `
+                                <button class="btn-drawer-btn" onclick="quickUpdateStatus('${b.id}', 'COMPLETED')">
+                                    🏠 Mark Stay Completed
+                                </button>
+                            ` : ''}
+                            ${b.status === 'COMPLETED' || b.status === 'DECLINED' ? `
+                                <button class="btn-drawer-btn delete" onclick="deleteBooking('${b.id}')">
+                                    🗑️ Delete Record
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     `;
 }
 
 // ==========================================================================
-// 6. QUICK 1-CLICK ACTIONS (EASY BOOKING MANAGEMENT)
+// 6. QUICK ACTIONS & WORKFLOWS
 // ==========================================================================
 
 // 1-Click Instant Approve (Standard 50% Advance)
@@ -592,7 +649,7 @@ function quickApproveBooking(bookingId) {
         navigator.clipboard.writeText(paymentUrl).catch(() => {});
     }
 
-    showAdminToast(`⚡ Reservation ${b.id} Approved! Offer sent & link copied.`);
+    showAdminToast(`⚡ Reservation ${b.id} Approved! Link copied.`);
 }
 
 // Quick Inline Status Switcher
@@ -663,7 +720,7 @@ function copyPaymentLink(url, btnElement) {
                 btnElement.style.borderColor = '';
             }, 2200);
         }
-        showAdminToast('✓ Offer & Payment link copied to clipboard!');
+        showAdminToast('✓ Link copied to clipboard!');
     };
 
     if (navigator.clipboard) {
@@ -919,7 +976,7 @@ function exportBackupJson() {
     dlAnchor.setAttribute('href', dataStr);
     dlAnchor.setAttribute('download', `destination_periyar_bookings_backup_${new Date().toISOString().split('T')[0]}.json`);
     dlAnchor.click();
-    showAdminToast('Backup JSON downloaded successfully.');
+    showAdminToast('Backup JSON downloaded.');
 }
 
 function importBackupJson(event) {
@@ -933,9 +990,9 @@ function importBackupJson(event) {
             if (Array.isArray(parsed)) {
                 saveBookings(parsed);
                 loadDashboard();
-                showAdminToast(`Successfully imported ${parsed.length} reservations.`);
+                showAdminToast(`Restored ${parsed.length} reservations.`);
             } else {
-                alert('Invalid backup file format. Must be an array of bookings.');
+                alert('Invalid backup file format.');
             }
         } catch (err) {
             alert('Error parsing JSON backup file.');

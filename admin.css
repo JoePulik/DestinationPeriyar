@@ -1,7 +1,7 @@
 /**
  * Destination Periyar - Host Administration Portal Styles
  * Premium dark-gold aesthetic matching the luxury homestay design
- * Fully responsive and mobile-friendly
+ * Uncluttered, modern mobile-first hospitality interface
  */
 
 :root {
@@ -23,17 +23,17 @@
     --font-sans: 'Inter', -apple-system, sans-serif;
 }
 
-/* Custom Luxury Dark-Gold Scrollbar matching the website design */
+/* Custom Luxury Dark-Gold Scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 }
 ::-webkit-scrollbar-track {
     background: #0c0b09;
 }
 ::-webkit-scrollbar-thumb {
     background: #28241e;
-    border-radius: 5px;
+    border-radius: 4px;
     border: 2px solid #0c0b09;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -51,7 +51,7 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     font-family: var(--font-sans);
-    line-height: 1.6;
+    line-height: 1.5;
     min-height: 100vh;
 }
 
@@ -74,8 +74,8 @@ body {
     background: #151411;
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 2.75rem 2rem;
-    max-width: 420px;
+    padding: 2.5rem 1.75rem;
+    max-width: 400px;
     width: 100%;
     text-align: center;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
@@ -99,9 +99,9 @@ body {
 }
 
 .admin-lock-card p {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.5rem;
 }
 
 .admin-pin-input {
@@ -124,44 +124,46 @@ body {
     box-shadow: 0 0 0 3px rgba(205, 164, 94, 0.25);
 }
 
-/* Navigation Header */
+/* ==========================================================================
+   NAVIGATION HEADER
+   ========================================================================== */
 .admin-navbar {
     background: #151411;
     border-bottom: 1px solid var(--border);
-    padding: 1rem 2rem;
+    padding: 0.85rem 1.75rem;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .admin-nav-container {
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
     gap: 1rem;
 }
 
 .admin-brand {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
 }
 
 .admin-brand h1 {
     font-family: var(--font-serif);
-    font-size: 1.45rem;
+    font-size: 1.35rem;
     letter-spacing: 0.08em;
     color: #fff;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .admin-brand-tag {
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    padding: 0.2rem 0.6rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    padding: 0.15rem 0.5rem;
     background: rgba(205, 164, 94, 0.15);
     border: 1px solid var(--primary);
     border-radius: 4px;
@@ -170,22 +172,60 @@ body {
     text-transform: uppercase;
 }
 
-.admin-nav-actions {
+/* Desktop Action Buttons */
+.desktop-nav-actions {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
+    gap: 0.65rem;
 }
 
+/* Mobile Quick Actions (Hidden on Desktop) */
+.mobile-nav-actions {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-quick-add {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.78rem !important;
+    min-height: 36px !important;
+}
+
+.mobile-menu-toggle {
+    background: #0c0b09;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+
+/* General Admin Buttons */
 .btn-admin {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    padding: 0.6rem 1.1rem;
-    font-size: 0.82rem;
+    padding: 0.55rem 1rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     border-radius: 4px;
     text-decoration: none;
@@ -229,74 +269,131 @@ body {
     border-color: #fff;
 }
 
-/* Quick Action Specialty Buttons */
-.btn-admin-quick-approve {
-    background: linear-gradient(135deg, #cda45e 0%, #e8c88c 100%);
-    color: #0c0b09 !important;
-    font-weight: 700;
-    border: 1px solid #cda45e;
-    box-shadow: 0 2px 10px rgba(205, 164, 94, 0.35);
+/* ==========================================================================
+   MOBILE SLIDE-OUT MENU DRAWER
+   ========================================================================== */
+.mobile-menu-drawer {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 290px;
+    height: 100vh;
+    background: #151411;
+    border-left: 1px solid var(--border);
+    z-index: 100000;
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 1.75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 35px rgba(0, 0, 0, 0.85);
 }
 
-.btn-admin-quick-approve:hover {
-    background: #ffffff;
-    color: #0c0b09 !important;
-    box-shadow: 0 4px 16px rgba(205, 164, 94, 0.6);
-    transform: translateY(-1px);
+.mobile-menu-drawer.active {
+    right: 0;
 }
 
-.btn-admin-whatsapp {
-    background: rgba(37, 211, 102, 0.12);
-    color: #25d366;
-    border: 1px solid #25d366;
+.mobile-drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    display: none;
 }
 
-.btn-admin-whatsapp:hover {
-    background: #25d366;
+.mobile-drawer-overlay.active {
+    display: block;
+}
+
+.mobile-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 1.25rem;
+}
+
+.mobile-drawer-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.mobile-drawer-close:hover {
     color: #fff;
 }
 
-.btn-record-pay {
-    background: #10b981;
-    color: #fff;
-    border: 1px solid #10b981;
+.mobile-drawer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
 }
 
-.btn-record-pay:hover {
-    background: #059669;
-    color: #fff;
+.mobile-drawer-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0.9rem;
+    background: #0c0b09;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    font-family: inherit;
+    width: 100%;
 }
 
-.btn-decline {
+.mobile-drawer-link:hover {
+    border-color: var(--primary);
+    color: #fff;
+    background: rgba(205, 164, 94, 0.08);
+}
+
+.mobile-drawer-link.logout {
+    border-color: rgba(239, 68, 68, 0.3);
     color: #ef4444;
-    border-color: rgba(239, 68, 68, 0.35);
 }
 
-.btn-decline:hover {
-    background: rgba(239, 68, 68, 0.15);
-    border-color: #ef4444;
+.drawer-icon {
+    font-size: 1.1rem;
 }
 
-/* Main Dashboard Container */
+/* ==========================================================================
+   MAIN DASHBOARD CONTAINER
+   ========================================================================== */
 .admin-main {
-    max-width: 1300px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
+    max-width: 1200px;
+    margin: 1.75rem auto;
+    padding: 0 1.25rem;
 }
 
-/* KPI Metrics Bar */
+/* ==========================================================================
+   METRICS BAR (DESKTOP & MOBILE COMPACT)
+   ========================================================================== */
 .metrics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 2.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.75rem;
 }
 
 .metric-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 1.25rem;
     transition: all 0.2s;
     position: relative;
     overflow: hidden;
@@ -304,22 +401,21 @@ body {
 
 .metric-card:hover {
     border-color: var(--border);
-    transform: translateY(-2px);
 }
 
 .metric-title {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-muted);
     font-weight: 600;
     display: block;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
 }
 
 .metric-value {
     font-family: var(--font-serif);
-    font-size: 2.1rem;
+    font-size: 1.85rem;
     font-weight: 700;
     color: #fff;
     line-height: 1.1;
@@ -338,35 +434,37 @@ body {
     color: var(--primary);
 }
 
-/* Filter & Search Bar */
+/* ==========================================================================
+   FILTER TABS, SORT & SEARCH BAR
+   ========================================================================== */
 .controls-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.75rem;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
     flex-wrap: wrap;
 }
 
 .pipeline-tabs {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.45rem;
     flex-wrap: wrap;
 }
 
 .tab-btn {
-    padding: 0.55rem 1.1rem;
+    padding: 0.48rem 0.95rem;
     background: #151411;
     border: 1px solid var(--border-subtle);
-    border-radius: 4px;
+    border-radius: 50px;
     color: var(--text-muted);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
 }
 
 .tab-btn:hover {
@@ -381,10 +479,10 @@ body {
 }
 
 .tab-badge {
-    padding: 0.1rem 0.45rem;
+    padding: 0.1rem 0.4rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50px;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
 }
 
 .tab-btn.active .tab-badge {
@@ -395,22 +493,22 @@ body {
 .controls-right {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
     flex-wrap: wrap;
 }
 
 .sort-box {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
     background: #151411;
     border: 1px solid var(--border-subtle);
-    border-radius: 4px;
-    padding: 0.45rem 0.75rem;
+    border-radius: 50px;
+    padding: 0.4rem 0.75rem;
 }
 
 .sort-label {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -422,7 +520,7 @@ body {
     border: none;
     color: #fff;
     font-family: inherit;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     outline: none;
     cursor: pointer;
 }
@@ -437,82 +535,134 @@ body {
     align-items: center;
     background: #151411;
     border: 1px solid var(--border-subtle);
-    border-radius: 4px;
-    padding: 0.5rem 0.85rem;
-    min-width: 250px;
+    border-radius: 50px;
+    padding: 0.45rem 0.85rem;
+    min-width: 230px;
 }
 
 .search-box input {
     background: transparent;
     border: none;
     color: #fff;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     outline: none;
     width: 100%;
-    margin-left: 0.5rem;
+    margin-left: 0.4rem;
 }
 
-/* Bookings Cards Grid / List */
+/* ==========================================================================
+   STREAMLINED "TICKET" BOOKING CARDS
+   ========================================================================== */
 .bookings-list {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
 }
 
-.booking-item-card {
+.booking-ticket-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    padding: 1.5rem 1.75rem;
-    transition: all 0.2s;
-    position: relative;
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-.booking-item-card:hover {
+.booking-ticket-card:hover {
     border-color: var(--border);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
-.booking-card-top {
+/* 1. Ticket Header Row */
+.ticket-header-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.85rem;
-    border-bottom: 1px solid var(--border-subtle);
-    flex-wrap: wrap;
+    align-items: flex-start;
     gap: 0.75rem;
+    margin-bottom: 0.85rem;
 }
 
-.booking-meta-left {
+.ticket-guest-name {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.ticket-sub-meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.35rem;
+    margin-top: 0.2rem;
     flex-wrap: wrap;
 }
 
-.booking-id-tag {
-    font-family: var(--font-sans);
-    font-weight: 700;
+.meta-dot {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.ticket-ref {
     color: var(--primary);
-    letter-spacing: 0.08em;
-    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: monospace;
 }
 
-.booking-time-ago {
-    font-size: 0.76rem;
-    color: var(--text-muted);
+.ticket-badge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
-/* Travel Timeline Badges */
-.timeline-badge {
+/* Status Badges */
+.status-badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.2rem 0.55rem;
-    border-radius: 4px;
+    padding: 0.25rem 0.65rem;
+    border-radius: 50px;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.status-badge.status-pending {
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+}
+.status-badge.status-offer {
+    background: rgba(6, 182, 212, 0.12);
+    color: #06b6d4;
+    border: 1px solid rgba(6, 182, 212, 0.35);
+}
+.status-badge.status-confirmed {
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+}
+.status-badge.status-completed {
+    background: rgba(167, 139, 250, 0.12);
+    color: #a78bfa;
+    border: 1px solid rgba(167, 139, 250, 0.35);
+}
+.status-badge.status-declined {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+/* Timeline Urgency Badges */
+.timeline-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.18rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
@@ -520,43 +670,336 @@ body {
     background: rgba(239, 68, 68, 0.2);
     color: #ef4444;
     border: 1px solid #ef4444;
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
 }
-
 .timeline-badge.tomorrow {
     background: rgba(245, 158, 11, 0.2);
     color: #f59e0b;
     border: 1px solid #f59e0b;
 }
-
 .timeline-badge.soon {
     background: rgba(205, 164, 94, 0.2);
     color: var(--primary);
     border: 1px solid var(--primary);
 }
-
 .timeline-badge.upcoming {
     background: rgba(255, 255, 255, 0.06);
     color: var(--text-muted);
     border: 1px solid rgba(255, 255, 255, 0.12);
 }
-
 .timeline-badge.in-house {
     background: rgba(16, 185, 129, 0.2);
     color: #10b981;
     border: 1px solid #10b981;
 }
-
 .timeline-badge.past {
     background: rgba(255, 255, 255, 0.05);
     color: #71716e;
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Inline Quick Status Switcher */
-.booking-meta-right {
+/* 2. Key Summary Strip (Dates & Tariff) */
+.ticket-summary-strip {
+    background: #0c0b09;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 0.65rem 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.summary-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.summary-dates-text {
+    font-size: 0.85rem;
+    color: #fff;
     display: flex;
     align-items: center;
+    gap: 0.35rem;
+}
+
+.nights-pill {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+    background: rgba(205, 164, 94, 0.15);
+    color: var(--primary);
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.summary-tariff-text {
+    text-align: right;
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+.summary-tariff-text strong {
+    font-size: 1.05rem;
+    color: var(--primary);
+}
+
+.summary-advance-sub {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* 3. Quick One-Tap Contact Chips */
+.ticket-quick-contacts {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.quick-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.7rem;
+    background: #0c0b09;
+    border: 1px solid var(--border-subtle);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.quick-chip:hover {
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.quick-chip.wa {
+    border-color: rgba(37, 211, 102, 0.3);
+    color: #25d366;
+}
+
+.quick-chip.wa:hover {
+    background: rgba(37, 211, 102, 0.15);
+    border-color: #25d366;
+}
+
+/* 4. Primary Decision Actions & Details Toggle */
+.ticket-action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.ticket-primary-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.btn-clean-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-family: inherit;
+    min-height: 38px;
+    white-space: nowrap;
+}
+
+.btn-clean-approve {
+    background: linear-gradient(135deg, #cda45e 0%, #e8c88c 100%);
+    color: #0c0b09 !important;
+    font-weight: 700;
+    box-shadow: 0 2px 10px rgba(205, 164, 94, 0.35);
+}
+
+.btn-clean-approve:hover {
+    background: #ffffff;
+    box-shadow: 0 4px 16px rgba(205, 164, 94, 0.6);
+}
+
+.btn-clean-whatsapp {
+    background: rgba(37, 211, 102, 0.12);
+    color: #25d366;
+    border: 1px solid #25d366;
+}
+
+.btn-clean-whatsapp:hover {
+    background: #25d366;
+    color: #fff;
+}
+
+.btn-clean-pay {
+    background: #10b981;
+    color: #fff;
+}
+
+.btn-clean-pay:hover {
+    background: #059669;
+}
+
+.btn-clean-voucher {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--border);
+}
+
+.btn-clean-voucher:hover {
+    background: rgba(205, 164, 94, 0.1);
+    color: #fff;
+}
+
+.btn-clean-outline {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+}
+
+.btn-drawer-toggle {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    color: var(--text-muted);
+    padding: 0.5rem 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.btn-drawer-toggle:hover,
+.btn-drawer-toggle.active {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+/* 5. Collapsible Ticket Drawer */
+.ticket-drawer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.ticket-drawer.open {
+    max-height: 800px;
+    opacity: 1;
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px dashed rgba(205, 164, 94, 0.2);
+}
+
+.drawer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.drawer-section {
+    background: #0c0b09;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 0.75rem 0.85rem;
+}
+
+.drawer-section-title {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.drawer-contact-line {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.drawer-contact-line a {
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.guest-note-box {
+    margin-top: 0.4rem;
+    padding: 0.45rem 0.65rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid var(--primary);
+    border-radius: 0 4px 4px 0;
+    font-size: 0.78rem;
+    color: #c4c4c0;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.note-quote {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.addons-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.addon-pill {
+    padding: 0.15rem 0.45rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    font-size: 0.72rem;
+    color: #dedcd8;
+}
+
+.payment-settled-badge {
+    padding: 0.35rem 0.55rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 4px;
+    color: #10b981;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Status Control & Host Tools in Drawer */
+.drawer-tools-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.drawer-status-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 0.5rem;
 }
 
@@ -569,9 +1012,9 @@ body {
 }
 
 .status-select-inline {
-    padding: 0.35rem 0.85rem;
+    padding: 0.3rem 0.75rem;
     border-radius: 50px;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -584,220 +1027,73 @@ body {
     transition: all 0.2s;
 }
 
-.status-select-inline:focus {
-    border-color: var(--primary);
-}
-
 .status-select-inline.status-pending {
     border-color: #f59e0b;
     color: #f59e0b;
     background: rgba(245, 158, 11, 0.12);
 }
-
 .status-select-inline.status-offer {
     border-color: #06b6d4;
     color: #06b6d4;
     background: rgba(6, 182, 212, 0.12);
 }
-
 .status-select-inline.status-confirmed {
     border-color: #10b981;
     color: #10b981;
     background: rgba(16, 185, 129, 0.12);
 }
-
 .status-select-inline.status-completed {
     border-color: #8b5cf6;
     color: #a78bfa;
     background: rgba(139, 92, 246, 0.12);
 }
-
 .status-select-inline.status-declined {
     border-color: #ef4444;
     color: #ef4444;
     background: rgba(239, 68, 68, 0.12);
 }
 
-/* Card Content Grid */
-.booking-card-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1.3fr 1fr;
-    gap: 1.5rem;
-    align-items: start;
-}
-
-.card-section-label {
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--primary);
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-}
-
-.guest-info-block .guest-name {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
-    color: #fff;
-    margin-bottom: 0.35rem;
-}
-
-.guest-contact-links {
+.drawer-secondary-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    font-size: 0.85rem;
-}
-
-.contact-link {
-    color: var(--text-light);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: color 0.2s;
-}
-
-.contact-link:hover {
-    color: var(--primary);
-}
-
-.contact-link.whatsapp:hover {
-    color: #25d366;
-}
-
-.guest-note-box {
-    margin-top: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-left: 2px solid var(--primary);
-    border-radius: 0 4px 4px 0;
-    font-size: 0.8rem;
-    color: #c4c4c0;
-    font-style: italic;
-    line-height: 1.4;
-}
-
-.note-quote {
-    color: var(--primary);
-    font-weight: 700;
-}
-
-/* Stay Info Block */
-.stay-info-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    font-size: 0.86rem;
-}
-
-.stay-dates-line {
-    font-weight: 600;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     flex-wrap: wrap;
-}
-
-.nights-pill {
-    font-size: 0.72rem;
-    padding: 0.15rem 0.45rem;
-    background: rgba(205, 164, 94, 0.15);
-    color: var(--primary);
-    border-radius: 4px;
-    font-weight: 700;
-}
-
-.stay-badge-party {
-    color: var(--text-muted);
-}
-
-.addons-tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-top: 0.4rem;
-}
-
-.addon-pill {
-    padding: 0.2rem 0.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-    font-size: 0.75rem;
-    color: #dedcd8;
-}
-
-/* Financial Block */
-.financial-block {
-    background: #0c0b09;
-    border: 1px solid var(--border-subtle);
-    border-radius: 6px;
-    padding: 0.85rem 1rem;
-    text-align: right;
-}
-
-.financial-total {
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--primary);
-    line-height: 1.15;
-    margin: 0.2rem 0;
-}
-
-.financial-sub {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-}
-
-.financial-advance-row {
-    font-size: 0.82rem;
-    color: var(--text-light);
-    margin-top: 0.25rem;
-}
-
-.financial-advance-row strong {
-    color: #fff;
-}
-
-.payment-settled-badge {
-    margin-top: 0.5rem;
-    padding: 0.4rem 0.6rem;
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    border-radius: 4px;
-    color: #10b981;
-    font-size: 0.76rem;
-    font-weight: 600;
-    text-align: left;
-}
-
-.payment-pending-badge {
-    margin-top: 0.5rem;
-    padding: 0.4rem 0.6rem;
-    background: rgba(245, 158, 11, 0.1);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    border-radius: 4px;
-    color: #f59e0b;
-    font-size: 0.76rem;
-    font-weight: 600;
-    text-align: left;
-}
-
-/* Card Actions Footer */
-.booking-card-actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0.65rem;
-    margin-top: 1.25rem;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     border-top: 1px solid var(--border-subtle);
-    flex-wrap: wrap;
 }
 
-/* Toast Notification */
+.btn-drawer-btn {
+    padding: 0.4rem 0.75rem;
+    background: #151411;
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.btn-drawer-btn:hover {
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.btn-drawer-btn.decline,
+.btn-drawer-btn.delete {
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.btn-drawer-btn.decline:hover,
+.btn-drawer-btn.delete:hover {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: #ef4444;
+}
+
+/* ==========================================================================
+   TOAST & EMPTY STATES
+   ========================================================================== */
 .admin-toast {
     position: fixed;
     bottom: 2rem;
@@ -805,10 +1101,10 @@ body {
     background: #1c1a16;
     border: 1px solid var(--primary);
     color: #fff;
-    padding: 0.85rem 1.35rem;
+    padding: 0.75rem 1.25rem;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     z-index: 100000;
     opacity: 0;
@@ -826,11 +1122,13 @@ body {
     background: #151411;
     border: 1px dashed var(--border);
     border-radius: 8px;
-    padding: 3.5rem 2rem;
+    padding: 3rem 1.5rem;
     text-align: center;
 }
 
-/* Action Modals */
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
 .admin-modal-overlay {
     position: fixed;
     top: 0;
@@ -855,11 +1153,11 @@ body {
     background: #151411;
     border: 1px solid var(--border);
     border-radius: 10px;
-    max-width: 600px;
+    max-width: 580px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    padding: 2.25rem;
+    padding: 2rem;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
     position: relative;
     box-sizing: border-box;
@@ -867,21 +1165,21 @@ body {
 
 .admin-modal-box h3 {
     font-family: var(--font-serif);
-    font-size: 1.75rem;
+    font-size: 1.65rem;
     color: #fff;
     margin-bottom: 0.35rem;
 }
 
 .modal-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .modal-close-btn {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
+    top: 1.15rem;
+    right: 1.15rem;
     background: transparent;
     border: none;
     color: var(--text-muted);
@@ -895,24 +1193,24 @@ body {
 }
 
 .modal-form-group {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.15rem;
 }
 
 .modal-form-group label {
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     color: var(--primary);
     font-weight: 600;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
 }
 
 .modal-form-group input,
 .modal-form-group select,
 .modal-form-group textarea {
     width: 100%;
-    padding: 0.75rem 0.9rem;
+    padding: 0.7rem 0.85rem;
     background: #0c0b09;
     border: 1px solid var(--border-subtle);
     border-radius: 6px;
@@ -933,23 +1231,23 @@ body {
     background: rgba(205, 164, 94, 0.08);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 1.2rem;
-    margin: 1.5rem 0;
+    padding: 1rem;
+    margin: 1.25rem 0;
 }
 
 .offer-preview-box h5 {
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .offer-preview-row {
     display: flex;
     justify-content: space-between;
-    font-size: 0.88rem;
-    padding: 0.25rem 0;
+    font-size: 0.85rem;
+    padding: 0.2rem 0;
     color: var(--text-light);
 }
 
@@ -959,100 +1257,90 @@ body {
 
 .offer-preview-row.total {
     border-top: 1px solid var(--border);
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
     font-weight: 700;
 }
 
 .offer-preview-row.total span:last-child {
     color: var(--primary);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
 }
 
 /* ==========================================================================
-   MOBILE & TABLET RESPONSIVE STYLES
+   MOBILE RESPONSIVE RULES (CLEAN & UNCLUTTERED)
    ========================================================================== */
-@media (max-width: 900px) {
-    .booking-card-grid {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-    }
-    .financial-block {
-        text-align: left;
-    }
-}
-
 @media (max-width: 768px) {
+    /* Navbar: Switch to clean mobile header with Menu Toggle */
     .admin-navbar {
-        padding: 0.85rem 1rem;
+        padding: 0.75rem 1rem;
     }
 
-    .admin-nav-container {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.85rem;
+    .desktop-nav-actions {
+        display: none !important;
     }
 
-    .admin-brand {
-        justify-content: space-between;
-        width: 100%;
+    .mobile-nav-actions {
+        display: flex !important;
     }
 
     .admin-brand h1 {
-        font-size: 1.25rem;
-    }
-
-    .admin-nav-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-        width: 100%;
-    }
-
-    .admin-nav-actions .btn-admin {
-        justify-content: center;
-        padding: 0.65rem 0.5rem;
-        font-size: 0.75rem;
-        text-align: center;
-        min-height: 42px;
+        font-size: 1.15rem;
     }
 
     .admin-main {
         padding: 0 0.85rem;
-        margin: 1.25rem auto;
+        margin: 1rem auto;
     }
 
+    /* Metrics: Sleek horizontal swipe strip (saves >200px vertical space) */
     .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
+        display: flex;
+        overflow-x: auto;
+        gap: 0.65rem;
+        padding-bottom: 0.4rem;
+        margin-bottom: 1.25rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .metrics-grid::-webkit-scrollbar {
+        display: none;
     }
 
     .metric-card {
-        padding: 1rem;
+        flex: 0 0 135px;
+        padding: 0.75rem 0.85rem;
+        border-radius: 6px;
     }
 
-    .metric-card.highlight-revenue {
-        grid-column: span 2;
+    .metric-title {
+        font-size: 0.65rem;
+        margin-bottom: 0.2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .metric-value {
-        font-size: 1.6rem;
+        font-size: 1.35rem;
     }
 
+    /* Controls bar */
     .controls-bar {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 0.65rem;
+        margin-bottom: 1.15rem;
     }
 
     .pipeline-tabs {
         overflow-x: auto;
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
-        padding-bottom: 0.4rem;
+        padding-bottom: 0.35rem;
         display: flex;
-        gap: 0.4rem;
+        gap: 0.35rem;
         scrollbar-width: none;
     }
 
@@ -1062,64 +1350,75 @@ body {
 
     .tab-btn {
         flex-shrink: 0;
-        padding: 0.5rem 0.85rem;
-        font-size: 0.78rem;
+        padding: 0.42rem 0.75rem;
+        font-size: 0.75rem;
     }
 
     .controls-right {
-        flex-direction: column;
-        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 0.5rem;
+        width: 100%;
     }
 
     .sort-box {
         width: 100%;
-        justify-content: space-between;
+        padding: 0.35rem 0.65rem;
     }
 
     .sort-select {
-        width: auto;
-        font-size: 0.85rem;
+        font-size: 0.76rem;
+        width: 100%;
     }
 
     .search-box {
         width: 100%;
         min-width: unset;
+        padding: 0.35rem 0.65rem;
     }
 
-    .booking-item-card {
-        padding: 1.15rem 1rem;
+    /* Booking Ticket Card Mobile Styling */
+    .booking-ticket-card {
+        padding: 1.1rem 1rem;
+        border-radius: 8px;
     }
 
-    .booking-card-top {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.6rem;
+    .ticket-guest-name {
+        font-size: 1.15rem;
     }
 
-    .booking-meta-right {
-        width: 100%;
-        justify-content: space-between;
+    .ticket-summary-strip {
+        padding: 0.6rem 0.75rem;
     }
 
-    .status-select-inline {
-        width: auto;
-        max-width: 100%;
+    .summary-dates-text {
+        font-size: 0.8rem;
     }
 
-    .booking-card-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-        width: 100%;
+    .summary-tariff-text strong {
+        font-size: 0.98rem;
     }
 
-    .booking-card-actions .btn-admin {
-        width: 100%;
-        justify-content: center;
-        padding: 0.75rem 1rem;
-        font-size: 0.82rem;
-        min-height: 44px;
+    .ticket-action-bar {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .ticket-primary-actions {
+        flex: 1;
+    }
+
+    .btn-clean-action {
+        flex: 1;
+        padding: 0.6rem 0.75rem;
+        font-size: 0.78rem;
+        min-height: 42px;
+    }
+
+    .btn-drawer-toggle {
+        padding: 0.6rem 0.75rem;
+        min-height: 42px;
     }
 
     /* Modal adjustments on mobile */
@@ -1155,15 +1454,31 @@ body {
 }
 
 @media (max-width: 480px) {
-    .admin-nav-actions {
+    .controls-right {
         grid-template-columns: 1fr;
     }
 
-    .metrics-grid {
-        grid-template-columns: 1fr;
+    .ticket-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
     }
 
-    .metric-card.highlight-revenue {
-        grid-column: span 1;
+    .ticket-badge-wrap {
+        justify-content: flex-start;
+    }
+
+    .ticket-summary-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+    }
+
+    .summary-tariff-text {
+        text-align: left;
+    }
+
+    .btn-clean-action {
+        font-size: 0.74rem;
     }
 }

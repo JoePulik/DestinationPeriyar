@@ -40,7 +40,9 @@
                 <h1>DESTINATION PERIYAR</h1>
                 <span class="admin-brand-tag">Host Portal</span>
             </div>
-            <div class="admin-nav-actions">
+
+            <!-- Desktop Actions -->
+            <div class="admin-nav-actions desktop-nav-actions">
                 <button class="btn-admin btn-admin-primary" onclick="openManualOfferModal()">
                     + New Custom Offer
                 </button>
@@ -57,8 +59,51 @@
                     Logout
                 </button>
             </div>
+
+            <!-- Mobile Quick Actions -->
+            <div class="mobile-nav-actions">
+                <button class="btn-admin btn-admin-primary mobile-quick-add" onclick="openManualOfferModal()">
+                    + Offer
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Open Host Menu" title="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
+
+    <!-- Mobile Slide-out Menu Drawer -->
+    <div id="mobileMenuDrawer" class="mobile-menu-drawer">
+        <div class="mobile-drawer-header">
+            <div>
+                <h3 style="font-family:var(--font-serif);color:#fff;font-size:1.3rem;">Host Options</h3>
+                <span style="font-size:0.75rem;color:var(--primary);letter-spacing:0.1em;text-transform:uppercase;">Destination Periyar</span>
+            </div>
+            <button class="mobile-drawer-close" onclick="closeMobileMenu()">&times;</button>
+        </div>
+        <div class="mobile-drawer-content">
+            <button class="mobile-drawer-link" onclick="closeMobileMenu(); openManualOfferModal();">
+                <span class="drawer-icon">➕</span> Create Custom Offer
+            </button>
+            <button class="mobile-drawer-link" onclick="closeMobileMenu(); exportBackupJson();">
+                <span class="drawer-icon">📥</span> Export Data Backup (JSON)
+            </button>
+            <label class="mobile-drawer-link" style="cursor:pointer;">
+                <span class="drawer-icon">📤</span> Import Data Backup
+                <input type="file" accept=".json" style="display:none;" onchange="closeMobileMenu(); importBackupJson(event);">
+            </label>
+            <a href="index.html" target="_blank" class="mobile-drawer-link">
+                <span class="drawer-icon">🌐</span> View Guest Website &nearr;
+            </a>
+            <hr style="border:none;border-top:1px solid var(--border-subtle);margin:1rem 0;">
+            <button class="mobile-drawer-link logout" onclick="adminLogout()">
+                <span class="drawer-icon">🔒</span> Log Out
+            </button>
+        </div>
+    </div>
+    <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" onclick="closeMobileMenu()"></div>
 
     <!-- Main Content -->
     <main class="admin-main">
